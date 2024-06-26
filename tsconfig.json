@@ -21,7 +21,6 @@
     "noFallthroughCasesInSwitch": false,
 
     "resolveJsonModule": true, //permite importar archivos json
-    "types": ["multer"] //integrar el tipo de dato multer para la carga de archivos
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
