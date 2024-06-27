@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
-    name: "payments"   // Nombre de la tabla en la base de datos
+    name: "payments"
 })
-export default class Pago {
+export default class Payments {
 
     @PrimaryGeneratedColumn()
     id: number;
