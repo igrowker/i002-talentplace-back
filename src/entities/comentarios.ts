@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
-    name: "apllications"
+    name: "comentarios"
 })
-export default class Apllications {
+export default class Comentarios {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -11,9 +11,12 @@ export default class Apllications {
     @Column({ name: "proyecto_id" })
     proyectoId: number;
 
-    @Column({ name: "junior_id" })
-    juniorId: number;
+    @Column({ name: "usuario_id" })
+    usuarioId: number;
 
     @Column()
-    estado: string;
+    comentario: string;
+
+    @Column()
+    puntuación: number;
 }
