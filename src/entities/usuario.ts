@@ -19,7 +19,7 @@ export default class Usuarios {
     email: string;
 
     @Column()
-    contraseña: string;
+    contrasenia: string;
 
     @Column({
         type: "enum",
@@ -29,23 +29,23 @@ export default class Usuarios {
     tipo: string;
 
     @Column({ name: "2fa_enabled" })
-    twoFactorAuthEnabled: boolean;
+    autentificacionDe2Factores: boolean;
 
     @Column({ name: "2fa_secret" })
-    twoFactorAuthSecret: string;
+    autenticación2Factores: string;
 
-    @OneToMany(() => Proyecto, (project) => project.empresaId)
-    projects: Proyecto[];
+    @OneToMany(() => Proyecto, (projecto) => projecto.empresaId)
+    projecto: Proyecto[];
 
-    @OneToMany(() => Aplicaciones, (application) => application.juniorId)
-    applications: Aplicaciones[];
+    @OneToMany(() => Aplicaciones, (aplicacion) => aplicacion.juniorId)
+    aplicacion: Aplicaciones[];
 
-    @OneToMany(() => Pagos, (payment) => payment.empresaId)
-    paymentsMade: Pagos[];
+    @OneToMany(() => Pagos, (pagos) => pagos.empresaId)
+    PagoRealizado: Pagos[];
 
-    @OneToMany(() => Pagos, (payment) => payment.juniorId)
-    paymentsReceived: Pagos[];
+    @OneToMany(() => Pagos, (pagos) => pagos.juniorId)
+    ComentarioRecivido: Pagos[];
 
-    @OneToMany(() => Comentarios, (feedback) => feedback.usuarioId)
-    feedbacks: Comentarios[];
+    @OneToMany(() => Comentarios, (comentarios) => comentarios.usuarioId)
+    comentarios: Comentarios[];
 }
