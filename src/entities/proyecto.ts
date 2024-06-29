@@ -13,23 +13,23 @@ export default class Proyectos {
     id: number;
 
     @Column()
-    title: string;
+    titulo: string;
 
     @Column()
-    description: string;
+    descripcion: string;
 
     @Column({ name: "empresa_id" })
     empresaId: number;
 
     @Column({ type: "decimal", precision: 10, scale: 2 })
-    budget: number;
+    presupuesto: number;
 
     @Column({
         default: "active"
     })
-    status: string;
+    estado: string;
 
-    @ManyToOne(() => Usuarios, (usuario) => usuario.projects)
+    @ManyToOne(() => Usuarios, (usuario) => usuario.projecto)
     @JoinColumn({ name: "empresa_id" })
     empresa: Usuarios;
 
