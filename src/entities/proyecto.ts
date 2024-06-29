@@ -25,7 +25,7 @@ export default class Proyectos {
     presupuesto: number;
 
     @Column({
-        default: "active"
+    default: "active"
     })
     estado: string;
 
