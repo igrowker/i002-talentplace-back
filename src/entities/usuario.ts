@@ -28,11 +28,11 @@ export default class Usuarios {
     })
     tipo: string;
 
-    @Column({ name: "2fa_enabled", nullable: true })
+    @Column({ name: "2fa_enabled", default: false })
     autenticacion2FAHabilitada: boolean;
 
     @Column({ name: "2fa_secret", nullable: true })
-    autenticacion2FASecreta: string;
+    autenticacion2FASecreto: string;
 
     @OneToMany(() => Proyecto, (projecto) => projecto.empresaId)
     projecto: Proyecto[];

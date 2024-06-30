@@ -1,14 +1,17 @@
 import server from "./server";
 import "reflect-metadata";
 import { AppDataSource } from "./config/typeorm.config";
-// import { preloadAppointmentsData, preloadCredentialsData, preloadUsersData } from "./helpers/Preload.Data";
-// import * as pgvector from 'pgvector/pg';
+import { preloadUsersData } from "./helpers/Preload.Data";
 
 async function serverOn() {
   try {
     await AppDataSource.initialize();
 
     console.log("Conexion a la base de datos realizada con exito");
+
+    // preload data
+    await preloadUsersData();
+
     server.listen(process.env.PORT, () => {
       console.log(
         `Jarvis operativo y atento señor, en guardia mediante sus ${process.env.PORT} millones de neurotransmisores`

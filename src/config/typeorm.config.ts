@@ -1,10 +1,10 @@
+import { DataSource } from "typeorm"
 import { config as dotenvConfig } from 'dotenv';
-import { DataSource } from "typeorm";
+import Usuarios from "../entities/usuario";
 import Aplicaciones from "../entities/aplicaciones";
 import Comentarios from "../entities/comentarios";
 import Pagos from "../entities/pagos";
 import Proyectos from "../entities/proyecto";
-import Usuarios from "../entities/usuario";
 
 dotenvConfig({ path: '.env' });
 
