@@ -1,13 +1,13 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import Proyecto from "./proyecto";
-import Aplicaciones from "./aplicaciones";
-import Pagos from "./pagos";
-import Comentarios from "./comentarios";
+import Proyecto from "./Proyecto";
+import Aplicaciones from "./Aplicacion";
+import Pagos from "./Pago";
+import Comentarios from "./Comentario";
 
 @Entity({
     name: "usuarios"
 })
-export default class Usuarios {
+export default class Usuario {
 
     @PrimaryGeneratedColumn()
     id: number;

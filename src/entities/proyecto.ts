@@ -1,13 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
-import Usuarios from "./usuario";
-import Aplicaciones from "./aplicaciones";
-import Pagos from "./pagos";
-import Comentarios from "./comentarios";
+import Usuarios from "./Usuario";
+import Aplicaciones from "./Aplicacion";
+import Pagos from "./Pago";
+import Comentarios from "./Comentario";
 
 @Entity({
     name: "proyectos"
 })
-export default class Proyectos {
+export default class Proyecto {
 
     @PrimaryGeneratedColumn()
     id: number;

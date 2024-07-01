@@ -1,8 +1,8 @@
 import * as speakeasy from "speakeasy";
 import * as qrcode from "qrcode";
-import { AppDataSource } from "../config/typeorm.config";
-import Usuarios from "../entities/usuario";
-import IQrCodeData from "../interfaces/IQrCodeData.interface";
+import { AppDataSource } from "../config/Typeorm.config";
+import Usuarios from "../entities/Usuario";
+import IQrCodeData from "../interfaces/IQrCodeData.Interface";
 
 const UserRepository = AppDataSource.getRepository(Usuarios);
 

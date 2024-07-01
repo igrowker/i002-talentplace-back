@@ -13,7 +13,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true,
+    "incremental": false,
     "skipLibCheck": true,
     "strict": true,                                      /* Enable all strict type-checking options. */
     "strictNullChecks": false,
@@ -22,6 +22,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
 
+    "typeRoots": ["./@types"], // custom types
     "resolveJsonModule": true, //permite importar archivos json
   },
   "include": ["src/**/*.ts"],
