@@ -16,6 +16,9 @@ RUN apk add --no-cache libc6-compat
 # Etapa 2: Construcción de la aplicación
 FROM deps AS builder
 
+# Establecer directorio de trabajo
+WORKDIR /app
+
 # Copiar el resto de los archivos de la aplicación
 COPY . .
 
