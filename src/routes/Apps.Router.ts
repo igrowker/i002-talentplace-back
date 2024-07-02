@@ -1,15 +1,12 @@
 import { Router } from "express";
-//import AppsController from "../controllers/Apps.Controllers";
-
+import AppsController from "../controllers/Apps.Controller";
 
 const appsRouter: Router = Router();
 
-appsRouter.get("/", (_req, res)=>{
-    //Obtener lista de aplicaciones del usuario autenticado.
-})
+//Lista de usuarios validados
+appsRouter.get("/", AppsController.getAllUsersValidate)
 
-appsRouter.post("/", (_req, res)=>{
-    //Aplicar a un proyecto (junior)
-})
+appsRouter.post("/", AppsController.postNewProject)
+
 
 export default appsRouter
