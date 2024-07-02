@@ -1,13 +1,20 @@
-# Etapa 1: Instalación de dependencias de desarrollo y construcción
-FROM node:alpine AS builder
+# Etapa 1: Instalación de dependencias de desarrollo
+FROM node:18-alpine3.15 AS deps
 
+# Establecer directorio de trabajo
 WORKDIR /app
 
-# Copiar solo los archivos necesarios para instalar dependencias
+# Copiar archivos de configuración de dependencias
 COPY package.json package-lock.json ./
 
-# Instalar dependencias
-RUN npm ci --only=production
+# Instalar dependencias con npm (usando --frozen-lockfile para reproducibilidad) creandose una carpeta llamda Dist
+# Instalar libc6-compat para compatibilidad con bibliotecas binarias
+RUN apk add --no-cache libc6-compat && \
+    npm install --package-lock-only && \
+    npm cache clean --force
+
+# Etapa 2: Construcción de la aplicación
+FROM deps AS builder
 
 # Copiar el resto de los archivos de la aplicación
 COPY . .
@@ -15,19 +22,17 @@ COPY . .
 # Compilar la aplicación
 RUN npm run build
 
-# Etapa 2: Producción del servidor
-FROM node:alpine AS runner
+# Etapa 3: Producción del servidor
+FROM node:18-alpine3.15 AS runner
 
+# Establecer directorio de trabajo para la aplicación en producción
 WORKDIR /usr/src/app
 
-# Copiar solo los archivos necesarios para producción
+# Copiar archivos de configuración de dependencias
 COPY package.json package-lock.json ./
 
-# Copiar la aplicación construida desde la etapa anterior
+# Copiar la aplicación construida desde la etapa de construcción
 COPY --from=builder /app/dist ./dist
-
-# Instalar dependencias de producción
-RUN npm ci --only=production
 
 # Comando para ejecutar la aplicación en producción
 CMD [ "npm", "start" ]
