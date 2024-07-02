@@ -1,6 +1,8 @@
 # Etapa 1: Instalación de dependencias de desarrollo
 FROM node:18-alpine3.15 AS deps
 
+RUN apk add --no-cache libc6-compat
+
 # Establecer directorio de trabajo
 WORKDIR /app
 
@@ -11,10 +13,9 @@ COPY package.json package-lock.json ./
 RUN npm install --frozen-lockfile
 
 # Instalar libc6-compat para compatibilidad con bibliotecas binarias
-RUN apk add --no-cache libc6-compat
 
 # Etapa 2: Construcción de la aplicación
-FROM node:18-alpine3.15 AS builder
+FROM deps AS builder
 
 # Establecer directorio de trabajo
 WORKDIR /app
