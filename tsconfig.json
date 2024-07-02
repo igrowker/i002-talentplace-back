@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2016", // Para soportar las últimas características de ECMAScript
+    "module": "CommonJS", // Usa ECMAScript Modules
+    "moduleResolution": "node", // Resuelve módulos en estilo Node.js
+    "strict": true, // Activa todas las comprobaciones estrictas de tipo
+    "esModuleInterop": true, // Habilita la interoperabilidad de módulos comunes
+    "skipLibCheck": true, // Omitir verificación de tipos en archivos de definición
+    "forceConsistentCasingInFileNames": true, // Fuerza el uso consistente de mayúsculas y minúsculas en los nombres de archivo ****************
+    "outDir": "./dist", // Directorio de salida para los archivos compilados
+    "rootDir": "./src", // Directorio raíz para los archivos fuente
+    "experimentalDecorators": true, // Habilita el soporte para decoradores
+    "emitDecoratorMetadata": true,  // Habilita la emisión de metadatos de decoradores
+
+    "declaration": true,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES6"],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    "sourceMap": true,
+    "baseUrl": "./",
+    "incremental": false,                           /* Enable all strict type-checking options. */
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false,
+
+    "typeRoots": ["./@types"], // custom types
+    "resolveJsonModule": true, //permite importar archivos json
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
