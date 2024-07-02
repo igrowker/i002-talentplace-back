@@ -20,7 +20,7 @@ FROM deps AS builder
 COPY . .
 
 # Compilar la aplicación
-RUN npm run build
+RUN yarn run build
 
 # Etapa 3: Producción del servidor
 FROM node:18-alpine3.15 AS runner
