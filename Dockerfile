@@ -1,5 +1,5 @@
 # Etapa 1: Instalación de dependencias de desarrollo
-FROM node:18-alpine3.15 AS deps
+FROM node:20 AS deps
 
 # Establecer directorio de trabajo
 WORKDIR /app
@@ -28,7 +28,7 @@ COPY . .
 RUN npm run build
 
 # Etapa 3: Producción del servidor
-FROM node:18-alpine3.15 AS runner
+FROM node:20 AS runner
 
 # Establecer directorio de trabajo para la aplicación en producción
 WORKDIR /usr/src/app
