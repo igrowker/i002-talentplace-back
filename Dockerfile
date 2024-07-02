@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm install --frozen-lockfile
 
 # Instalar libc6-compat para compatibilidad con bibliotecas binarias
-RUN apk add --no-cache libc6-compat
+#RUN apk add --no-cache libc6-compat
 
 # Etapa 2: Construcción de la aplicación
 FROM deps AS builder
