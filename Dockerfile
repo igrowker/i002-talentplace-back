@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Instalar dependencias con npm (usando --frozen-lockfile para reproducibilidad) creandose una carpeta llamda Dist
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Instalar libc6-compat para compatibilidad con bibliotecas binarias
 RUN apk add --no-cache libc6-compat
