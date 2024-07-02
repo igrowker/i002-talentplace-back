@@ -32,7 +32,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
 # Copiar la aplicación construida desde la etapa de construcción
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app ./
 
 # Comando para ejecutar la aplicación en producción
 CMD [ "npm", "start" ]
