@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Instalar dependencias con npm (usando --frozen-lockfile para reproducibilidad) creandose una carpeta llamda Dist
-RUN yarn install --prefer-offline --frozen-lockfile
+RUN npm ci
 
 # Instalar libc6-compat para compatibilidad con bibliotecas binarias
 RUN apk add --no-cache libc6-compat
@@ -20,7 +20,7 @@ FROM deps AS builder
 COPY . .
 
 # Compilar la aplicación
-RUN yarn run build
+RUN npm run build
 
 # Etapa 3: Producción del servidor
 FROM node:18-alpine3.15 AS runner
