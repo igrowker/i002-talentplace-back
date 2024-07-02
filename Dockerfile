@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Instalar dependencias de producción y desarrollo
 COPY package*.json ./
-RUN apk add --no-cache libc6-compat
 RUN npm install --production=false
 
 # Copiar el resto de los archivos de la aplicación

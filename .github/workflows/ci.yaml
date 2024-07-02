@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -18,7 +18,13 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install --verbose
+
+      - name: Verify Dependencies
+        run: npm audit
+
+      - name: Run Tests
+        run: npm test
 
       - name: Build Application
         run: npm run build
