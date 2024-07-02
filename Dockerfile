@@ -19,6 +19,8 @@ FROM deps AS builder
 # Establecer directorio de trabajo
 WORKDIR /app
 
+COPY --from=deps /app/node_modules ./node_modules
+
 # Copiar el resto de los archivos de la aplicación
 COPY . .
 
