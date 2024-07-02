@@ -14,7 +14,7 @@ RUN npm install --frozen-lockfile
 RUN apk add --no-cache libc6-compat
 
 # Etapa 2: Construcción de la aplicación
-FROM deps AS builder
+FROM node:18-alpine3.15 AS builder
 
 # Establecer directorio de trabajo
 WORKDIR /app
