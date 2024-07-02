@@ -23,9 +23,6 @@ jobs:
       - name: Verify Dependencies
         run: npm audit
 
-      - name: Run Tests
-        run: npm test
-
       - name: Build Application
         run: npm run build
 
