@@ -6,7 +6,7 @@ const postUser= async (req: Request, res: Response) => {
     const { nombre , contrasenia, email, tipo } = req.body;
     const createUser = await authServices.createUser( nombre , contrasenia, email, tipo );
     res.status(200).json(createUser);
-  };
+  }; 
   
   const authLogin = async (req: Request, res: Response) => {
     const { email , contrasenia } = req.body;
