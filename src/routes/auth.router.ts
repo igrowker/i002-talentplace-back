@@ -8,6 +8,6 @@ const authRouter: Router = Router();
 authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , AuthController.postAuth2FaSetup);
 authRouter.post("/2fa/verify", AuthController.postAuth2FaVerify);
 authRouter.post("/login", authController.authLogin);
-authRouter.post("/register", authController.postUser);
+authRouter.post("/register", authController.postUser); 
 
 export default authRouter;
