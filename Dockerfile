@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Etapa 1: Instalación de dependencias
 FROM node:alpine AS deps
 #RUN apk add --no-cache libc6-compat
