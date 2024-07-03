@@ -27,6 +27,9 @@ export default class Usuario {
         default: "junior"
     })
     tipo: string;
+    
+    @Column({name: "update_at", default: new Date})
+    updatedAt: Date;
 
     @Column({ name: "2fa_enabled", default: false })
     autenticacion2FAHabilitada: boolean;
@@ -49,6 +52,4 @@ export default class Usuario {
     @OneToMany(() => Comentarios, (comentarios) => comentarios.usuarioId)
     comentarios: Comentarios[];
 
-    @Column({name: "update_at", default: new Date})
-    updatedAt: Date;
 }
