@@ -134,7 +134,7 @@ const createUser = async (nombre: string, contrasenia: string, email: string, ti
   
     } catch (error) {
       throw error;
-  }
+  } 
 };
 
 
