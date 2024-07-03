@@ -2,12 +2,12 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMan
 import Aplicaciones from "./aplicacion";
 import Pagos from "./pago";
 import Comentarios from "./comentario";
-import { Usuario } from "./usuario";
+import Usuario from "./usuario";
 
 @Entity({
     name: "proyectos"
 })
-export class Proyecto {
+export default class Proyecto {
 
     @PrimaryGeneratedColumn()
     id: number;

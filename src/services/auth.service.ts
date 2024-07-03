@@ -2,9 +2,9 @@ import * as speakeasy from "speakeasy";
 import * as qrcode from "qrcode";
 import { AppDataSource } from "../config/typeorm.config";
 import IQrCodeData from "../interfaces/iQrCodeData.interface";
-import { Usuario } from "../entities/usuario";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Usuario from "../entities/usuario";
 
 const UserRepository = AppDataSource.getRepository(Usuario);
 
