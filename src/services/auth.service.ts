@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Usuario from "../entities/usuario";
 
-const UserRepository = AppDataSource.getRepository(Usuario);
+const userRepository = AppDataSource.getRepository(Usuario);
 
 const auth2FaSetupService = async (userId: number) => {
     const secret = speakeasy.generateSecret({
@@ -28,7 +28,7 @@ const auth2FaSetupService = async (userId: number) => {
 
 const findUserById = async (id: number) => {
     try {
-        const user = await UserRepository.findOneBy({id});
+        const user = await userRepository.findOneBy({id});
         
         if (!user) throw ({
             message: `No existe el usuario con id ${id}`,
@@ -65,7 +65,7 @@ const updateUserSecret2Fa = async (userId: Partial<Usuario>, secret: string) => 
     try {
 
         if(!userId.autenticacion2FAHabilitada) {
-            await UserRepository.update(userId, {
+            await userRepository.update(userId, {
                 autenticacion2FAHabilitada: true,
                 autenticacion2FASecreto: secret
             });            
@@ -77,7 +77,6 @@ const updateUserSecret2Fa = async (userId: Partial<Usuario>, secret: string) => 
 
 const createUser = async (nombre: string, contrasenia: string, email: string, tipo: string): Promise<Usuario> => {
     try {
-      const userRepository = AppDataSource.getRepository(Usuario);
       const hashedPassword = await bcrypt.hash(contrasenia, 10);
   
       const newUser = userRepository.create({
@@ -97,9 +96,7 @@ const createUser = async (nombre: string, contrasenia: string, email: string, ti
   
   const authLogin = async (email: string , contrasenia: string ) => {
     try {
-  
-      const userRepository = AppDataSource.getRepository(Usuario);
-  
+    
       const user = await userRepository.findOne({ where: { email } });
       if (!user) {
         throw {
@@ -120,7 +117,7 @@ const createUser = async (nombre: string, contrasenia: string, email: string, ti
   
       const token = jwt.sign(
         { userId: user.id, username: user.nombre },
-        process.env.JWT_SECRET || '',
+        process.env.JWT_SECRET,
         { expiresIn: '48h' }
       );
 
