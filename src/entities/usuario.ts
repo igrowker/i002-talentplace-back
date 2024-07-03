@@ -48,4 +48,7 @@ export class Usuario {
 
     @OneToMany(() => Comentarios, (comentarios) => comentarios.usuarioId)
     comentarios: Comentarios[];
+
+    @Column({name: "update_at", default: new Date})
+    updatedAt: Date;
 }
