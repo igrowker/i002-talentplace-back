@@ -2,6 +2,18 @@ import { Request, Response } from "express";
 import authServices from "../services/auth.service";
 import catchAsync from "../utils/catchAsync.util";
 
+const postUser= async (req: Request, res: Response) => {
+    const { nombre , contrasenia, email} = req.body;
+    const createUser = await authServices.createUser( nombre , contrasenia, email );
+    res.status(200).json(createUser);
+  }; 
+  
+  const authLogin = async (req: Request, res: Response) => {
+    const { email , contrasenia } = req.body;
+    const userLogin = await authServices.authLogin( email, contrasenia );
+      res.status(200).json(userLogin);
+  }
+
 const postAuth2FaSetup = async (req: Request, res: Response) => {
     const { userId } = req.body;
     const setupQrCode = await authServices.auth2FaSetupService(userId);
@@ -16,5 +28,7 @@ const postAuth2FaVerify = async (req: Request, res: Response) => {
 
 export default {
     postAuth2FaSetup: catchAsync(postAuth2FaSetup),
-    postAuth2FaVerify: catchAsync(postAuth2FaVerify)
+    postAuth2FaVerify: catchAsync(postAuth2FaVerify),
+    postUser: catchAsync(postUser),
+    authLogin: catchAsync(authLogin)
 }

@@ -2,6 +2,7 @@ import server from "./server";
 import "reflect-metadata";
 import { AppDataSource } from "./config/typeorm.config";
 import { preloadUsersData } from "./helpers/preloadData.helper";
+import swaggerDocs  from "./doc/swagger"
 
 async function serverOn() {
   try {
@@ -16,6 +17,7 @@ async function serverOn() {
       console.log(
         `Jarvis operativo y atento señor, en guardia mediante sus ${process.env.PORT} millones de neurotransmisores`
       );
+      swaggerDocs(server, process.env.PORT);
     });
   } catch (error) {
     console.error("Error al inicializar el servidor:", error);
