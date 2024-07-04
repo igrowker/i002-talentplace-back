@@ -13,8 +13,7 @@ const jwtVerify = async (
 
     if (!isToken) throw ({
         message: 'Necesitas loguearte para acceder a esta seccion.',
-        code: 401,
-        error: "No autorizado"
+        code: 401
     });
 
     const token = req.headers['authorization'].split(' ')[1] ?? '';
@@ -37,8 +36,7 @@ const jwtVerify = async (
       } catch (error) {
         throw ({
             message: 'Token invalido o vencido.',
-            code: 401,
-            error: "No autorizado"
+            code: 401
         });;
       }
 };

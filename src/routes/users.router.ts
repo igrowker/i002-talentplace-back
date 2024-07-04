@@ -1,5 +1,6 @@
 import { Router } from "express";
 import userController from "../controllers/user.controller";
+import jwtVerifyMiddleware from "../middlewares/jwtVerify.middleware";
 
 const usersRouter: Router = Router();
 
@@ -15,8 +16,8 @@ const usersRouter: Router = Router();
  *       200:
  *         description: Detalles del usuario obtenidos correctamente.
  */
-usersRouter.get("/me", userController.getUserValidate)
+usersRouter.get("/me", jwtVerifyMiddleware.jwtVerify, userController.getUserValidate);
 
-usersRouter.put("/me", userController.editUserData)
+usersRouter.put("/me", jwtVerifyMiddleware.jwtVerify, userController.editUserData);
 
 export default usersRouter
