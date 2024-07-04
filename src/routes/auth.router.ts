@@ -6,55 +6,65 @@ const authRouter: Router = Router();
 
 /**
  * @swagger
- * /api/v1/auth/2fa/setup:
+ * /2fa/setup:
  *   post:
- *     summary: Configura la autenticación de doble factor (2FA) para un usuario.
+ *     summary: Configuración de autenticación de dos factores (2FA)
  *     tags:
  *       - Autenticación
- *     requestBody:
- *       description: Datos necesarios para configurar 2FA.
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               nombre:
- *                 type: string
- *               email:
- *                 type: string
- *               contrasenia:
- *                 type: string
- *               tipo:
- *                 type: string
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         description: Datos para configurar 2FA
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             nombre:
+ *               type: string
+ *             email:
+ *               type: string
+ *             contrasenia:
+ *               type: string
+ *             tipo:
+ *               type: string
  *     responses:
  *       200:
- *         description: Código QR generado para la configuración de 2FA.
+ *         description: QR Code generado para la configuración de 2FA
+ *         content:
+ *           application/json:
+ *             example:
+ *               qrCodeUrl: "https://example.com/qr-code.png"
  */
 authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , AuthController.postAuth2FaSetup);
 
+
 /**
  * @swagger
- * /api/v1/auth/2fa/verify:
+ * /2fa/verify:
  *   post:
- *     summary: Verifica el token de autenticación de doble factor (2FA).
+ *     summary: Verificación de autenticación de dos factores (2FA)
  *     tags:
  *       - Autenticación
- *     requestBody:
- *       description: Datos necesarios para verificar el token.
- *       required: true
- *       content:
- *         application/json:
- *              schema:
- *                  type: object
- *                  properties:
- *                      userId:
- *                          type: number
- *                      token:
- *                          type: string
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         description: Datos para verificar 2FA
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             userId:
+ *               type: number
+ *             token:
+ *               type: string
  *     responses:
  *       200:
- *         description: Estado de verificación del token.
+ *         description: Estado de verificación de 2FA
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: "Verificación realizada con éxito"
+ *               verifyStatus: true
  */
 authRouter.post("/2fa/verify", AuthController.postAuth2FaVerify);
 

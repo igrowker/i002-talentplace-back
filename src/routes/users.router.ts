@@ -17,18 +17,6 @@ const usersRouter: Router = Router();
  */
 usersRouter.get("/me", userController.getUserValidate)
 
-/**
- * @swagger
- * /api/v1/users/me:
- *   put:
- *     summary: Actualiza los datos del usuario actual.
- *     tags:
- *       - Usuarios
- *     responses:
- *       200:
- *         description: Datos del usuario actualizados correctamente.
- */
-
 usersRouter.put("/me", userController.editUserData)
 
 export default usersRouter
