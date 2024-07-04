@@ -1,19 +1,34 @@
 import { Router } from "express";
-//import UsersController from "../controllers/Users.Controller";
-// aqui ira la validación de usuario de 2FA
+import userController from "../controllers/user.controller";
 
 const usersRouter: Router = Router();
 
-usersRouter.get("/me", (_req, res)=>{
-    //Mostrar el usuario luego de ser validado
-    try{}
-    catch{}
-})
 
-usersRouter.put("/me", (_req, res)=>{
-    //Actualizar info del user
-    try{}
-    catch{}
-})
+/**
+ * @swagger
+ * /api/v1/users/me:
+ *   get:
+ *     summary: Obtiene los detalles del usuario actual.
+ *     tags:
+ *       - Usuarios
+ *     responses:
+ *       200:
+ *         description: Detalles del usuario obtenidos correctamente.
+ */
+usersRouter.get("/me", userController.getUserValidate)
+
+/**
+ * @swagger
+ * /api/v1/users/me:
+ *   put:
+ *     summary: Actualiza los datos del usuario actual.
+ *     tags:
+ *       - Usuarios
+ *     responses:
+ *       200:
+ *         description: Datos del usuario actualizados correctamente.
+ */
+
+usersRouter.put("/me", userController.editUserData)
 
 export default usersRouter
