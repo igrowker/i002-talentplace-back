@@ -1,10 +1,10 @@
 import { DataSource } from "typeorm"
 import { config as dotenvConfig } from 'dotenv';
-import Aplicaciones from "../entities/aplicacion";
-import Comentarios from "../entities/comentario";
-import Pagos from "../entities/pago";
-import { Proyecto } from "../entities/proyecto";
-import { Usuario } from "../entities/usuario";
+import Usuario from "../entities/usuario";
+import Proyecto from "../entities/proyecto";
+import Aplicacion from "../entities/aplicacion";
+import Comentario from "../entities/comentario";
+import Pago from "../entities/pago";
 
 dotenvConfig({ path: '.env' });
 
@@ -19,7 +19,7 @@ export const AppDataSource = new DataSource({
     dropSchema: true,
     synchronize: true,
     logging: false,
-    entities: [ Usuario , Aplicaciones , Comentarios , Pagos , Proyecto ],
+    entities: [ Usuario , Aplicacion , Comentario , Pago , Proyecto ],
     subscribers: [],
     migrations: [],
 })
