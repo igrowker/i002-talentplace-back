@@ -75,15 +75,33 @@ const updateUserSecret2Fa = async (userId: Partial<Usuario>, secret: string) => 
     }
 }
 
-const createUser = async (nombre: string, contrasenia: string, email: string, tipo: string): Promise<Usuario> => {
+const createUser = async (nombre: string, contrasenia: string, email: string): Promise<Usuario> => {
     try {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        throw { message: 'Formato de correo electrónico no válido', code: 400 };
+      }
+
+    // Validar fortaleza de la contraseña
+    const validatePasswordStrength = (contrasenia: string): boolean => {
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+      return regex.test(contrasenia);
+    };
+
+    if (!validatePasswordStrength(contrasenia)) {
+      throw { message: 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número', code: 400 };
+    }
+      const existingUser = await userRepository.findOne({ where: { email } });
+      if (existingUser) {
+        throw { message: 'Ya existe un usuario con este correo electrónico', code: 409 };
+      }
+
       const hashedPassword = await bcrypt.hash(contrasenia, 10);
   
       const newUser = userRepository.create({
         nombre,
         contrasenia: hashedPassword,
         email,
-        tipo,
       });
   
       await userRepository.save(newUser);
@@ -96,23 +114,24 @@ const createUser = async (nombre: string, contrasenia: string, email: string, ti
   
   const authLogin = async (email: string , contrasenia: string ) => {
     try {
-    
+
+      if (!email || !contrasenia) {
+        throw { message: 'Correo electrónico y contraseña son obligatorios', code: 400 };
+      }
+
+      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // if (!emailRegex.test(email)) {
+      //   throw { message: 'Formato de correo electrónico no válido', code: 400 };
+      // }
+      
       const user = await userRepository.findOne({ where: { email } });
       if (!user) {
-        throw {
-          message: 'No existe el usuario',
-          code: 404,
-          error: 'Usuario incorrecto'
-        };
+        throw { message: 'Correo electrónico o contraseña incorrectos', code: 401 };
       }
-  
+      
       const passwordMatch = await bcrypt.compare(contrasenia, user.contrasenia);
       if (!passwordMatch) {
-        throw {
-          message: 'Contraseña incorrecta',
-          code: 401,
-          error: 'Contraseña incorrecta'
-        };
+        throw { message: 'Correo electrónico o contraseña incorrectos', code: 401 };
       }
   
       const token = jwt.sign(
@@ -124,10 +143,16 @@ const createUser = async (nombre: string, contrasenia: string, email: string, ti
       user.updatedAt = new Date();
       await userRepository.save(user);
   
-      return {
+      return ({
         message: 'Inicio de sesión exitoso',
-        refreshToken: token
-      };
+        refreshToken: token,
+        user: {
+          id: user.id,
+          nombre: user.nombre,
+          email: user.email,
+          tipo: user.tipo
+        }
+      });
   
     } catch (error) {
       throw error;
