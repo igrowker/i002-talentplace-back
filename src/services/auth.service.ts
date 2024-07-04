@@ -32,8 +32,7 @@ const findUserById = async (id: number) => {
         
         if (!user) throw ({
             message: `No existe el usuario con id ${id}`,
-            code: 404,
-            error: "ID inválido"
+            code: 404
         });
         return user;
         
