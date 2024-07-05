@@ -44,10 +44,10 @@ export default class Usuario {
     aplicacion: Aplicacion[];
 
     @OneToMany(() => Pago, (pagos) => pagos.empresaId)
-    PagoRealizado: Pago[];
+    pagoRealizado: Pago[];
 
     @OneToMany(() => Pago, (pagos) => pagos.juniorId)
-    ComentarioRecivido: Pago[];
+    comentarioRecibido: Pago[];
 
     @OneToMany(() => Comentario, (comentarios) => comentarios.usuarioId)
     comentarios: Comentario[];

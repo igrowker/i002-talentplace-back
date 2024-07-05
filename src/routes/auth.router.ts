@@ -1,5 +1,4 @@
 import { Router } from "express";
-import AuthController from "../controllers/auth.controller";
 import JwtVerifyMiddleware from "../middlewares/jwtVerify.middleware";
 import authController from "../controllers/auth.controller";
 
@@ -36,7 +35,7 @@ const authRouter: Router = Router();
  *             example:
  *               qrCodeUrl: "https://example.com/qr-code.png"
  */
-authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , AuthController.postAuth2FaSetup);
+authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , authController.postAuth2FaSetup);
 
 
 /**
@@ -67,7 +66,7 @@ authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , AuthController.pos
  *               message: "Verificación realizada con éxito"
  *               verifyStatus: true
  */
-authRouter.post("/2fa/verify", AuthController.postAuth2FaVerify);
+authRouter.post("/2fa/verify", authController.postAuth2FaVerify);
 authRouter.post("/login", authController.authLogin);
 authRouter.post("/register", authController.postUser); 
 
