@@ -95,7 +95,7 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
         throw { message: 'Ya existe un usuario con este correo electrónico', code: 409 };
       }
 
-      const hashedPassword = await bcrypt.hash(contrasenia, 10);
+      const hashedPassword = await bcrypt.hash(contrasenia, 5);
   
       const newUser = userRepository.create({
         nombre,
@@ -113,15 +113,6 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
   
   const authLogin = async (email: string , contrasenia: string ) => {
     try {
-
-      if (!email || !contrasenia) {
-        throw { message: 'Correo electrónico y contraseña son obligatorios', code: 400 };
-      }
-
-      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      // if (!emailRegex.test(email)) {
-      //   throw { message: 'Formato de correo electrónico no válido', code: 400 };
-      // }
       
       const user = await userRepository.findOne({ where: { email } });
       if (!user) {
@@ -152,7 +143,6 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
           tipo: user.tipo
         }
       });
-  
     } catch (error) {
       throw error;
   } 
