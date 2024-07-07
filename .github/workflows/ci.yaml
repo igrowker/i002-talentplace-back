@@ -18,7 +18,7 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install --verbose
+        run: npm ci --verbose
 
       - name: Verify Dependencies
         run: npm audit
