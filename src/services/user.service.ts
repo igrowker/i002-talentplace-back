@@ -28,7 +28,10 @@ const editUserDataService = async (id: string, userData:Partial<Usuario>) => {
 }
 
 const getAllUsersService = async () => {
-    const users: Usuario[] = await userRepository.find();
+    const users: Usuario[] = await userRepository.createQueryBuilder('usuarios')
+    .select(['usuarios.id', 'usuarios.nombre', 'usuarios.email', 'usuarios.tipo', 'usuarios.autenticacion2FAHabilitada', 'usuarios.updatedAt'])
+    .getMany();
+    
     return users;
 }
 
