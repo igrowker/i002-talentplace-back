@@ -3,23 +3,33 @@ import { Request, Response, NextFunction } from 'express';
 const validateRegisterData = (req: Request, res: Response, next: NextFunction) => {
   const { nombre, email, contrasenia, confirmarContrasenia } = req.body;
 
-  // Verifica la presencia de nombre, email, contrasenia y confirmarContrasenia
+  // Verificar nombre, email, contrasenia y confirmarContrasenia
   if (!nombre || !email || !contrasenia || !confirmarContrasenia) {
-    return res.status(400).json({ message: 'Nombre, correo electrónico, contraseña y confirmación de contraseña son obligatorios' });
+    throw { message: 'Campos obligatorios', code: 400 };
   }
 
-  // Verifica el formato del email
+  // Verificar el formato del email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    return res.status(400).json({ message: 'Formato de correo electrónico no válido' });
+    throw { message: 'Formato de correo electrónico no válido', code: 400 };
   }
 
-  // Verifica que la contraseña y la confirmación de la contraseña coincidan
+  // Función para validar la fortaleza de la contraseña
+  const validatePasswordStrength = (password: string): boolean => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return regex.test(password);
+  };
+  if (!validatePasswordStrength(contrasenia)) {
+    throw { message: 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número', code: 400 };
+  }
+
+  // Verificar que la contraseña y la confirmación coincidan
   if (contrasenia !== confirmarContrasenia) {
-    return res.status(400).json({ message: 'Las contraseñas no coinciden' });
+    throw { message: 'Las contraseñas no coinciden', code: 400 };
   }
 
   next();
 };
 
 export default validateRegisterData;
+

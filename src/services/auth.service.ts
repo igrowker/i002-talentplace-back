@@ -74,22 +74,9 @@ const updateUserSecret2Fa = async (userId: Partial<Usuario>, secret: string) => 
     }
 }
 
-const createUser = async (nombre: string, contrasenia: string, email: string): Promise<Usuario> => {
+const createUser = async (nombre: string, contrasenia: string, email: string)=> {
     try {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        throw { message: 'Formato de correo electrónico no válido', code: 400 };
-      }
 
-    // Validar fortaleza de la contraseña
-    const validatePasswordStrength = (contrasenia: string): boolean => {
-      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-      return regex.test(contrasenia);
-    };
-
-    if (!validatePasswordStrength(contrasenia)) {
-      throw { message: 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número', code: 400 };
-    }
       const existingUser = await userRepository.findOne({ where: { email } });
       if (existingUser) {
         throw { message: 'Ya existe un usuario con este correo electrónico', code: 409 };
@@ -104,8 +91,8 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
       });
   
       await userRepository.save(newUser);
-  
-      return newUser;
+      
+      return { message: 'Usuario creado exitosamente'};
     } catch (error) {
       throw error;
     }
