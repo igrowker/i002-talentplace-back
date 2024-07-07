@@ -8,12 +8,12 @@ import Usuario from "../entities/usuario";
 
 const userRepository = AppDataSource.getRepository(Usuario);
 
-const auth2FaSetupService = async (userId: number) => {
+const auth2FaSetupService = async (userId: string) => {
     const secret = speakeasy.generateSecret({
         name: process.env.SPEAKEASY_NAME
     })
     try {
-        const user:Partial<Usuario> = await findUserById(userId);
+        const user = await findUserById(userId);
 
         // actualizo el secret
         await updateUserSecret2Fa(user , secret.ascii);
@@ -26,7 +26,7 @@ const auth2FaSetupService = async (userId: number) => {
     }
 }
 
-const findUserById = async (id: number) => {
+const findUserById = async (id: string) => {
     try {
         const user = await userRepository.findOneBy({id});
         
@@ -41,7 +41,7 @@ const findUserById = async (id: number) => {
     }
 }
 
-const auth2FaVerifyService = async (userId: number, token: string) => {    
+const auth2FaVerifyService = async (userId: string, token: string) => {    
 
     const user: Partial<Usuario> = await findUserById(userId);
 
@@ -59,12 +59,12 @@ const auth2FaVerifyService = async (userId: number, token: string) => {
     }
 }
 
-const updateUserSecret2Fa = async (userId: Partial<Usuario>, secret: string) => {
+const updateUserSecret2Fa = async (user: Usuario, secret: string) => {
 
     try {
 
-        if(!userId.autenticacion2FAHabilitada) {
-            await userRepository.update(userId, {
+        if(!user.autenticacion2FAHabilitada) {
+            await userRepository.update(user.id, {
                 autenticacion2FAHabilitada: true,
                 autenticacion2FASecreto: secret
             });            

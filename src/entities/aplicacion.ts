@@ -9,10 +9,10 @@ export default class Aplicacion {
     id: number;
 
     @Column({ name: "proyecto_id" })
-    proyectoId: number;
+    proyectoId: string;
 
     @Column({ name: "junior_id" })
-    juniorId: number;
+    juniorId: string;
 
     @Column()
     estado: string;

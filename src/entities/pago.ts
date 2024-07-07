@@ -1,12 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, PrimaryColumn } from "typeorm";
+import { ulid } from "ulid";
 
 @Entity({
     name: "pagos"
 })
 export default class Pago {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryColumn()
+    id: string;
 
     @Column({ name: "proyecto_id" })
     proyectoId: number;
@@ -22,4 +23,9 @@ export default class Pago {
 
     @Column()
     estado: string;
+
+    @BeforeInsert()
+    generateUlid() {
+      this.id = ulid();
+    }
 }
