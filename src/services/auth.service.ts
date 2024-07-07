@@ -125,9 +125,9 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
       }
   
       const token = jwt.sign(
-        { userId: user.id, username: user.nombre },
+        { userId: user.id, email: user.email, tipo: user.tipo },
         process.env.JWT_SECRET,
-        { expiresIn: '48h' }
+        { expiresIn: '72h' }
       );
 
       user.updatedAt = new Date();
