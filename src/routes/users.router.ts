@@ -16,7 +16,7 @@ const usersRouter: Router = Router();
  *       200:
  *         description: Detalles del usuario obtenidos correctamente.
  */
-usersRouter.get("/me", jwtVerifyMiddleware.jwtVerify, userController.getUserValidate);
+usersRouter.get("/me", jwtVerifyMiddleware.jwtVerify, userController.getUserProfile);
 
 usersRouter.put("/me", jwtVerifyMiddleware.jwtVerify, userController.editUserData);
 
