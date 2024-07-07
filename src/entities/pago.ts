@@ -10,13 +10,13 @@ export default class Pago {
     id: string;
 
     @Column({ name: "proyecto_id" })
-    proyectoId: number;
+    proyectoId: string;
 
     @Column({ name: "empresa_id" })
-    empresaId: number;
+    empresaId: string;
 
     @Column({ name: "junior_id" })
-    juniorId: number;
+    juniorId: string;
 
     @Column({ type: "decimal", precision: 10, scale: 2 })
     monto: number;
