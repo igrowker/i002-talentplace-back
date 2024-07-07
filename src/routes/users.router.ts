@@ -6,6 +6,11 @@ import jwtRolVerify from "../middlewares/jwtRolVerify.middleware";
 
 const usersRouter: Router = Router();
 
+usersRouter.get("/",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtRolVerify(["admin"]),
+    userController.getAllUsers
+);
 
 /**
  * @swagger

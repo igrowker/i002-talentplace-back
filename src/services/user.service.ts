@@ -3,7 +3,7 @@ import Usuario from "../entities/usuario"
 
 const userRepository = AppDataSource.getRepository(Usuario);
 
-const getUserProfilebyIdService = async (userId: number) => {
+const getUserProfileByIdService = async (userId: string) => {
     //mediante querys
     const userByQuery: Usuario = await userRepository.createQueryBuilder('usuarios')
     .select(["usuarios.id", "usuarios.nombre", "usuarios.email", "usuarios.tipo", "usuarios.autenticacion2FAHabilitada", "usuarios.updatedAt"])
@@ -23,6 +23,19 @@ const getUserProfilebyIdService = async (userId: number) => {
     return {id, nombre, email, tipo, autenticacion2FAHabilitada, updatedAt};
 }
 
+const editUserDataService = async (id: string, userData:Partial<Usuario>) => {
+    // const user = getUserProfileByIdService(id)
+}
+
+const getAllUsersService = async () => {
+    const users: Usuario[] = await userRepository.createQueryBuilder('usuarios')
+    .select(['usuarios.id', 'usuarios.nombre', 'usuarios.email', 'usuarios.tipo', 'usuarios.autenticacion2FAHabilitada', 'usuarios.updatedAt'])
+    .getMany();
+    
+    return users;
+}
+
 export default {
-    getUserProfilebyIdService
+    getUserProfileByIdService,
+    getAllUsersService
 }
