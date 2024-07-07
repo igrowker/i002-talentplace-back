@@ -1,13 +1,8 @@
 import { Router } from "express";
 import JwtVerifyMiddleware from "../middlewares/jwtVerify.middleware";
 import authController from "../controllers/auth.controller";
-<<<<<<< HEAD
 import rateLimiter from "../middlewares/rateLimited.middleware";
 import validateLoginData from "../middlewares/validateLogin.middleware"
-=======
-import rateLimit from "../middlewares/validateLogin.middleware";
-import validateLoginData from "../middlewares/rateLimited.middleware"
->>>>>>> 093d2a40d2abac1aebb4d0d0585656f3fd708929
 import validateRegisterData from "../middlewares/validateRegister.middleware";
 
 const authRouter: Router = Router();
