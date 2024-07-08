@@ -23,8 +23,21 @@ const getUserProfileByIdService = async (userId: string) => {
     return {id, nombre, email, tipo, autenticacion2FAHabilitada, updatedAt};
 }
 
-const editUserDataService = async (id: string, userData:Partial<Usuario>) => {
-    // const user = getUserProfileByIdService(id)
+const editUserProfileService = async (id: string, userData: Partial<Usuario>) => {
+  const userByQuery: Usuario = await userRepository.createQueryBuilder('usuarios')
+      .where({ id })
+      .getOne();
+
+  if (!userByQuery) throw ({
+      message: "No existe un usuario con ese id",
+      code: 404
+  });
+  // Actualiza las propiedades del objeto con los datos proporcionados en userData
+  Object.assign(userByQuery, userData);
+  await userRepository.save(userByQuery);
+
+  const { nombre, email, tipo, autenticacion2FAHabilitada, updatedAt } = userByQuery;
+  return { id , nombre, email, tipo, autenticacion2FAHabilitada, updatedAt };
 }
 
 const getAllUsersService = async () => {
@@ -37,5 +50,6 @@ const getAllUsersService = async () => {
 
 export default {
     getUserProfileByIdService,
-    getAllUsersService
+    getAllUsersService,
+    editUserProfileService
 }

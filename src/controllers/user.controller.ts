@@ -8,7 +8,10 @@ const getUserProfile = async (req: Request, res: Response) =>{
     res.status(200).json(userProfile)
 }
 
-const editUserData = async (req: Request, res: Response) =>{
+const editUserData = async (req: Request, res: Response) => {
+  const { id, ...updateData } = req.body;
+  const updatedUser = await userService.editUserProfileService(id, updateData);
+  res.status(200).json(updatedUser);
 }
 
 const getAllUsers = async (req: Request, res: Response) => {
