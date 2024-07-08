@@ -1,5 +1,6 @@
 
 import { AppDataSource } from "../config/typeorm.config";
+import * as bcrypt from "bcryptjs";
 import Usuario from "../entities/usuario";
 import { preloadUsers } from "./usersData.helper";
 
@@ -13,7 +14,10 @@ export const preloadUsersData = async () => {
         if(users.length) return console.log(`No se hizo precarga de datos porque ya hay ${users.length} datos cargados`);
         // users
         for await(const user of preloadUsers) {
-            const newUser = await UserRepository.create(user);
+            const newUser = await UserRepository.create({
+                ...user,
+                contrasenia: await bcrypt.hash(user.contrasenia, 10)
+            });
             await transactionalEntityManager.save(newUser);
         }
         console.log("Precarga de Usuarios del Preload realizada con éxito");        

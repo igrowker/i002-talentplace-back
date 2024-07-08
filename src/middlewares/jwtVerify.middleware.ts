@@ -9,12 +9,18 @@ const jwtVerify = async (
   next: NextFunction,
 ) => {
 
-    const isToken = req.headers['authorization'];
+    const isToken: string = req.headers['authorization'];
 
     if (!isToken) throw ({
         message: 'Necesitas loguearte para acceder a esta seccion.',
-        code: 401,
-        error: "No autorizado"
+        code: 401
+    });
+
+    const tokenBearer: String[] = req.headers['authorization'].split(' ');
+
+    if(tokenBearer.length !== 2 || tokenBearer[0] !== 'Bearer') throw ({
+      message: 'El token no existe o el formato es incorrecto.',
+      code: 401
     });
 
     const token = req.headers['authorization'].split(' ')[1] ?? '';
@@ -37,8 +43,7 @@ const jwtVerify = async (
       } catch (error) {
         throw ({
             message: 'Token invalido o vencido.',
-            code: 401,
-            error: "No autorizado"
+            code: 401
         });;
       }
 };

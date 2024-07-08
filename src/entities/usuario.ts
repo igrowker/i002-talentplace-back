@@ -1,16 +1,17 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import Proyecto from "./proyecto";
 import Aplicacion from "./aplicacion";
 import Pago from "./pago";
 import Comentario from "./comentario";
+import { ulid } from "ulid";
 
 @Entity({
     name: "usuarios"
 })
 export default class Usuario {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryColumn()
+    id: string;
 
     @Column()
     nombre: string;
@@ -44,12 +45,16 @@ export default class Usuario {
     aplicacion: Aplicacion[];
 
     @OneToMany(() => Pago, (pagos) => pagos.empresaId)
-    PagoRealizado: Pago[];
+    pagoRealizado: Pago[];
 
     @OneToMany(() => Pago, (pagos) => pagos.juniorId)
-    ComentarioRecivido: Pago[];
+    comentarioRecibido: Pago[];
 
     @OneToMany(() => Comentario, (comentarios) => comentarios.usuarioId)
     comentarios: Comentario[];
 
+    @BeforeInsert()
+    generateUlid() {
+      this.id = ulid();
+    }
 }
