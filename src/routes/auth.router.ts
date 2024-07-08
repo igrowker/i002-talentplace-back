@@ -7,7 +7,7 @@ const authRouter: Router = Router();
 
 /**
  * @swagger
- * /2fa/setup:
+ * /auth/2fa/setup:
  *   post:
  *     summary: Configuración de autenticación de dos factores (2FA)
  *     tags:
@@ -20,14 +20,9 @@ const authRouter: Router = Router();
  *         schema:
  *           type: object
  *           properties:
- *             nombre:
- *               type: string
- *             email:
- *               type: string
- *             contrasenia:
- *               type: string
- *             tipo:
- *               type: string
+ *             userId:
+ *               type: number
+ *   
  *     responses:
  *       200:
  *         description: QR Code generado para la configuración de 2FA
@@ -41,7 +36,7 @@ authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , AuthController.pos
 
 /**
  * @swagger
- * /2fa/verify:
+ * /auth/2fa/verify:
  *   post:
  *     summary: Verificación de autenticación de dos factores (2FA)
  *     tags:
@@ -54,9 +49,13 @@ authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , AuthController.pos
  *         schema:
  *           type: object
  *           properties:
- *             userId:
- *               type: number
- *             token:
+  *             nombre:
+ *               type: string
+ *             email:
+ *               type: string
+ *             contrasenia:
+ *               type: string
+ *             tipo:
  *               type: string
  *     responses:
  *       200:
