@@ -1,14 +1,26 @@
 import { Request, Response } from "express";
+import userService from "../services/user.service";
+import catchAsync from "../utils/catchAsync.util";
 
-const getUserValidate = (req: Request, res: Response) =>{
-    res.send("soy un get")
+const getUserProfile = async (req: Request, res: Response) =>{
+    const { id } = req.body;
+    const userProfile = await userService.getUserProfileByIdService(id);
+    res.status(200).json(userProfile)
 }
 
-const editUserData = (req: Request, res: Response) =>{
+const editUserData = async (req: Request, res: Response) => {
+  const { id, ...updateData } = req.body;
+  const updatedUser = await userService.editUserProfileService(id, updateData);
+  res.status(200).json(updatedUser);
+}
 
+const getAllUsers = async (req: Request, res: Response) => {
+    const users = await userService.getAllUsersService();
+    res.status(200).json(users);
 }
 
 export default {
-    getUserValidate,
-    editUserData
+    getUserProfile: catchAsync(getUserProfile),
+    editUserData: catchAsync(editUserData),
+    getAllUsers: catchAsync(getAllUsers)
 }

@@ -1,16 +1,17 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
+import { Column, Entity, ManyToOne, JoinColumn, OneToMany, BeforeInsert, PrimaryColumn } from "typeorm";
 import Usuario from "./usuario";
 import Aplicacion from "./aplicacion";
 import Pago from "./pago";
 import Comentario from "./comentario";
+import { ulid } from "ulid";
 
 @Entity({
     name: "proyectos"
 })
 export default class Proyecto {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryColumn()
+    id: string;
 
     @Column()
     titulo: string;
@@ -19,7 +20,7 @@ export default class Proyecto {
     descripcion: string;
 
     @Column({ name: "empresa_id" })
-    empresaId: number;
+    empresaId: string;
 
     @Column({ type: "decimal", precision: 10, scale: 2 })
     presupuesto: number;
@@ -41,4 +42,9 @@ export default class Proyecto {
 
     @OneToMany(() => Comentario, (comentarios) => comentarios.proyectoId)
     comentarios: Comentario[];
+
+    @BeforeInsert()
+    generateUlid() {
+      this.id = ulid();
+    }
 }
