@@ -49,6 +49,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/talentplace:latest
                 #${{ secrets.DOCKERHUB_USERNAME }}/talentplace:${{ github.run_number }}
+                #${{ secrets.DOCKERHUB_USERNAME }}/talentplace:${{ github.sha }}
   
   #verify-connectivity:
     #needs: build-and-test
