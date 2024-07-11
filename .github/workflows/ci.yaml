@@ -47,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/talentplace:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
                 #${{ secrets.DOCKERHUB_USERNAME }}/talentplace:${{ github.run_number }}
                 #${{ secrets.DOCKERHUB_USERNAME }}/talentplace:${{ github.sha }}
   
