@@ -96,6 +96,20 @@ const editProjectByIdService = async (id: string, projectData: ProjectUpdateDto)
     }
 }
 
+const deleteProjectByIdService = async (projectId: string) =>{
+    
+    const projectFinded = await getProjectByIdService(projectId);
+
+    try {
+        
+        await projectRepository.remove(projectFinded);        
+        return {message: `Proyecto '${projectFinded.titulo}' eliminado con exito`};
+
+    } catch (error) {
+        throw error;
+    }
+}
+
 const findCompanyById = async (id: string) => {
 
     try {        
@@ -114,5 +128,6 @@ export default {
     getAllProjectsService,
     getProjectByIdService,
     postNewProjectService,
-    editProjectByIdService
+    editProjectByIdService,
+    deleteProjectByIdService
 }

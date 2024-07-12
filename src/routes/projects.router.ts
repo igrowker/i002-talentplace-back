@@ -33,6 +33,11 @@ projectRouter.put("/:id",
     projectController.editProjectById
 );
 
-projectRouter.delete("/:id", projectController.deleteProject)
+projectRouter.delete("/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(['empresa']),
+    projectController.deleteProjectById
+);
 
 export default projectRouter

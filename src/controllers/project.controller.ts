@@ -29,8 +29,10 @@ const editProjectById = async (req: Request, res: Response) =>{
     res.status(200).json(projectUpdated);
 }
 
-const deleteProject = (req: Request, res: Response) =>{
-
+const deleteProjectById = async (req: Request, res: Response) =>{
+    const { projectId } = req.body;
+    const projectDeleted = await projectService.deleteProjectByIdService(projectId);
+    res.status(200).json(projectDeleted);
 }
 
 export default {
@@ -38,5 +40,5 @@ export default {
     getProyectById: catchAsync(getProyectById),
     postNewProject: catchAsync(postNewProject),
     editProjectById: catchAsync(editProjectById),
-    deleteProject
+    deleteProjectById: catchAsync(deleteProjectById)
 }
