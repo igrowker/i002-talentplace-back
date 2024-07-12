@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import catchAsync from "../utils/catchAsync.util";
 import projectService from "../services/project.service";
 import ProjectDto from "../dto/project.dto";
+import ProjectUpdateDto from "../dto/projectUpdate.dto";
 
 const getAllProjects = async (req: Request, res: Response) =>{
     const projects = await projectService.getAllProjectsService();
@@ -21,8 +22,11 @@ const postNewProject = async (req: Request, res: Response) =>{
     res.status(201).json(projectOk);
 }
 
-const editProject = (req: Request, res: Response) =>{
-
+const editProjectById = async (req: Request, res: Response) =>{
+    const { id } = req.params;
+    const projectData: ProjectUpdateDto = req.body;
+    const projectUpdated = await projectService.editProjectByIdService(id, projectData);    
+    res.status(200).json(projectUpdated);
 }
 
 const deleteProject = (req: Request, res: Response) =>{
@@ -33,6 +37,6 @@ export default {
     getAllProjects: catchAsync(getAllProjects),
     getProyectById: catchAsync(getProyectById),
     postNewProject: catchAsync(postNewProject),
-    editProject,
+    editProjectById: catchAsync(editProjectById),
     deleteProject
 }
