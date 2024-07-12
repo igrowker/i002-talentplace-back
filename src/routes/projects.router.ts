@@ -4,7 +4,9 @@ import projectController from "../controllers/project.controller";
 
 const projectRouter: Router = Router();
 
-projectRouter.get("/", projectController.getAllProjects)
+projectRouter.get("/",
+    projectController.getAllProjects
+);
 
 projectRouter.get("/:id", projectController.editProject)
 
