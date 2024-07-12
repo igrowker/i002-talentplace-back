@@ -1,5 +1,6 @@
 import { AppDataSource } from "../config/typeorm.config";
 import ProjectDto from "../dto/project.dto";
+import ProjectUpdateDto from "../dto/projectUpdate.dto";
 import Categoria from "../entities/categoria";
 import { Habilidad } from "../entities/habilidad";
 import Proyecto from "../entities/proyecto";
@@ -68,6 +69,33 @@ const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
     }    
 }
 
+const editProjectByIdService = async (id: string, projectData: ProjectUpdateDto) =>{
+
+    await findCompanyById(id);
+    await getProjectByIdService(projectData.projectId);
+
+    try {
+        //agrego categoria
+        const category: Categoria = await categoryService.postNewCategory(projectData.categoria);
+        //agrego habilidades
+        const habilities = await habilidadService.postNewHability(projectData.habilidades);        
+        //primer parametro siempre el id del project a actualizar
+        const projectUpdated = await projectRepository.preload({
+            id: projectData.projectId,
+            ...projectData,
+            habilidades: habilities,
+            categoria: category,
+        });
+        await projectRepository.save(projectUpdated);
+
+        const project = await getProjectByIdService(projectData.projectId)
+        return project;
+        
+    } catch (error) {
+        throw error;
+    }
+}
+
 const findCompanyById = async (id: string) => {
 
     try {        
@@ -85,5 +113,6 @@ const findCompanyById = async (id: string) => {
 export default {
     getAllProjectsService,
     getProjectByIdService,
-    postNewProjectService
+    postNewProjectService,
+    editProjectByIdService
 }

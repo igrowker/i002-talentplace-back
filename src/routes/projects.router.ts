@@ -26,7 +26,12 @@ projectRouter.post("/:id",
     projectController.postNewProject
 );
 
-projectRouter.put("/:id", projectController.editProject)
+projectRouter.put("/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(['empresa']),
+    projectController.editProjectById
+);
 
 projectRouter.delete("/:id", projectController.deleteProject)
 
