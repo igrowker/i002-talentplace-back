@@ -19,7 +19,12 @@ projectRouter.get("/:id",
 );
 
 //Para empresa
-projectRouter.post("/", projectController.postNewProject)
+projectRouter.post("/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(['empresa']),
+    projectController.postNewProject
+);
 
 projectRouter.put("/:id", projectController.editProject)
 
