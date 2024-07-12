@@ -5,7 +5,7 @@ import { Habilidad } from "../entities/habilidad";
 import Proyecto from "../entities/proyecto";
 import Usuario from "../entities/usuario";
 import categoryService from "./category.service";
-import habilidadService from "./habilidad.service";
+import habilidadService from "./hability.service";
 
 
 const projectRepository = AppDataSource.getRepository(Proyecto);
