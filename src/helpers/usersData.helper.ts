@@ -12,7 +12,7 @@ export const preloadUsers: IUser[] = [
         nombre: "Nico Ausa",
         email: "nicoausa@gmail.com",
         contrasenia: "User123.",
-        tipo: "junior",
+        tipo: "empresa",
     },
     {
         nombre: "Leo Ausa",
