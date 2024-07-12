@@ -5,6 +5,8 @@ import Proyecto from "../entities/proyecto";
 import Aplicacion from "../entities/aplicacion";
 import Comentario from "../entities/comentario";
 import Pago from "../entities/pago";
+import { Habilidad } from "../entities/habilidad";
+import Categoria from "../entities/categoria";
 
 dotenvConfig({ path: '.env' });
 
@@ -16,10 +18,10 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME_DATABASE,
-    dropSchema: true,
+    // dropSchema: true,
     synchronize: true,
     logging: false,
-    entities: [ Usuario , Aplicacion , Comentario , Pago , Proyecto ],
+    entities: [ Usuario , Aplicacion , Comentario , Pago , Proyecto, Habilidad, Categoria ],
     subscribers: [],
     migrations: [],
 })

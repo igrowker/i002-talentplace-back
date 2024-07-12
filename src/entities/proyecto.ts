@@ -1,9 +1,11 @@
-import { Column, Entity, ManyToOne, JoinColumn, OneToMany, BeforeInsert, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, JoinColumn, OneToMany, PrimaryColumn, BeforeInsert, ManyToMany } from "typeorm";
 import Usuario from "./usuario";
 import Aplicacion from "./aplicacion";
 import Pago from "./pago";
 import Comentario from "./comentario";
 import { ulid } from "ulid";
+import Categoria from "./categoria";
+import { Habilidad } from "./habilidad";
 
 @Entity({
     name: "proyectos"
@@ -19,16 +21,32 @@ export default class Proyecto {
     @Column()
     descripcion: string;
 
+    @Column()
+    requisitos: string;
+
     @Column({ name: "empresa_id" })
     empresaId: string;
 
-    @Column({ type: "decimal", precision: 10, scale: 2 })
-    presupuesto: number;
+    // @Column({ type: "decimal", precision: 10, scale: 2 })
+    // presupuesto: number;
 
     @Column({
-        default: "active"
+        type: "enum",
+        enum: ["remoto", "hibrido", "presencial"],
+        default: "presencial"
     })
-    estado: string;
+    modalidad: string;
+
+    @Column({
+        default: false
+    })
+    estado: boolean;
+
+    @ManyToMany(() => Habilidad, (habilidad) => habilidad.proyecto, { eager: true })
+    habilidades: Habilidad[];
+
+    @ManyToOne(() => Categoria, (categoria) => categoria.proyecto, { eager: true })
+    categoria: Categoria;
 
     @ManyToOne(() => Usuario, (usuario) => usuario.projecto)
     @JoinColumn({ name: "empresa_id" })
