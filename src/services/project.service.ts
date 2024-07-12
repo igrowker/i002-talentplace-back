@@ -16,6 +16,25 @@ const getAllProjectsService = async () =>{
     }
 }
 
+const getProjectByIdService = async (projectId: string) =>{
+    
+    try {
+        const project: Proyecto = await projectRepository.findOneBy({id: projectId});
+        
+        if (!project) throw ({
+            message: "No existe un proyecto con este id",
+            code: 404
+        })
+
+        return project;
+        
+    } catch (error) {
+        throw error;
+    }
+
+}
+
 export default {
     getAllProjectsService,
+    getProjectByIdService
 }

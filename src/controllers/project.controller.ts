@@ -7,8 +7,10 @@ const getAllProjects = async (req: Request, res: Response) =>{
     res.status(200).json(projects);
 }
 
-const getProyectId = (req: Request, res: Response) =>{
-
+const getProyectById = async (req: Request, res: Response) =>{  
+    const { projectId } = req.body;
+    const project = await projectService.getProjectByIdService(projectId)
+    res.status(200).json(project);
 }
 
 const postNewProject = (req: Request, res: Response) =>{
@@ -25,7 +27,7 @@ const deleteProject = (req: Request, res: Response) =>{
 
 export default {
     getAllProjects: catchAsync(getAllProjects),
-    getProyectId,
+    getProyectById: catchAsync(getProyectById),
     postNewProject,
     editProject,
     deleteProject
