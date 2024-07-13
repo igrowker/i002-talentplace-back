@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import authServices from "../services/auth.service";
 import catchAsync from "../utils/catchAsync.util";
+import UserDto from "../dto/user.dto";
 
 const postUser= async (req: Request, res: Response) => {
-    const { nombre, apellido, telefono, pais, tipo, email, contrasenia } = req.body;
-    const createUser = await authServices.createUser( nombre, apellido, telefono, pais, tipo, email, contrasenia );
-    res.status(200).json(createUser);
+    const userData: UserDto = req.body;
+    const createUser = await authServices.createUser(userData);
+    res.status(201).json(createUser);
   }; 
   
   const authLogin = async (req: Request, res: Response) => {
