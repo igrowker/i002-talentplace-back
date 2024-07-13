@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 
 const validateRegisterData = (req: Request, res: Response, next: NextFunction) => {
-  const { nombre, email, contrasenia, confirmarContrasenia } = req.body;
+  const { nombre, apellido, telefono, pais, email, contrasenia } = req.body;
 
   // Verificar nombre, email, contrasenia y confirmarContrasenia
-  if (!nombre || !email || !contrasenia || !confirmarContrasenia) {
+  if (!nombre || !apellido || !telefono || !pais || !email || !contrasenia) {
     throw { message: 'Campos obligatorios', code: 400 };
   }
 
@@ -23,10 +23,10 @@ const validateRegisterData = (req: Request, res: Response, next: NextFunction) =
     throw { message: 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número', code: 400 };
   }
 
-  // Verificar que la contraseña y la confirmación coincidan
-  if (contrasenia !== confirmarContrasenia) {
-    throw { message: 'Las contraseñas no coinciden', code: 400 };
-  }
+  // // Verificar que la contraseña y la confirmación coincidan
+  // if (contrasenia !== confirmarContrasenia) {
+  //   throw { message: 'Las contraseñas no coinciden', code: 400 };
+  // }
 
   next();
 };

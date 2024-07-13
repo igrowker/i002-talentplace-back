@@ -71,6 +71,6 @@ authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , authController.pos
  */
 authRouter.post("/2fa/verify", authController.postAuth2FaVerify);
 authRouter.post("/register", validateRegisterData, authController.postUser);
-authRouter.post("/login", rateLimiter, validateLoginData, authController.authLogin);
+authRouter.post("/login", validateLoginData, authController.authLogin);
 
 export default authRouter;
