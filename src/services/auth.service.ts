@@ -5,6 +5,7 @@ import IQrCodeData from "../interfaces/iQrCodeData.interface";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Usuario from "../entities/usuario";
+import UserDto from "../dto/user.dto";
 
 const userRepository = AppDataSource.getRepository(Usuario);
 
@@ -74,23 +75,18 @@ const updateUserSecret2Fa = async (user: Usuario, secret: string) => {
     }
 }
 
-const createUser = async (nombre: string, apellido: string, telefono: string, pais: string, tipo: string, email: string, contrasenia: string )=> {
+const createUser = async (userData: UserDto )=> {
     try {
 
-      const existingUser = await userRepository.findOne({ where: { email } });
+      const existingUser = await userRepository.findOne({ where: { email: userData.email } });
       if (existingUser) {
         throw { message: 'Ya existe un usuario con este correo electrónico', code: 409 };
       }
 
-      const hashedPassword = await bcrypt.hash(contrasenia, 5);
+      const hashedPassword = await bcrypt.hash(userData.contrasenia, 5);
   
       const newUser = userRepository.create({
-        nombre,
-        apellido,
-        telefono,
-        pais,
-        tipo,
-        email,
+        ...userData,
         contrasenia: hashedPassword,
       });
   
