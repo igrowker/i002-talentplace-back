@@ -3,8 +3,8 @@ import authServices from "../services/auth.service";
 import catchAsync from "../utils/catchAsync.util";
 
 const postUser= async (req: Request, res: Response) => {
-    const { nombre, apellido, telefono, pais, email, contrasenia } = req.body;
-    const createUser = await authServices.createUser( nombre, apellido, telefono, pais, email, contrasenia );
+    const { nombre, apellido, telefono, pais, tipo, email, contrasenia } = req.body;
+    const createUser = await authServices.createUser( nombre, apellido, telefono, pais, tipo, email, contrasenia );
     res.status(200).json(createUser);
   }; 
   
