@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 
 const validateRegisterData = (req: Request, res: Response, next: NextFunction) => {
-  const { nombre, apellido, telefono, pais, email, contrasenia } = req.body;
+  const { nombre, apellido, telefono, pais, tipo, email, contrasenia } = req.body;
 
   // Verificar nombre, email, contrasenia y confirmarContrasenia
-  if (!nombre || !apellido || !telefono || !pais || !email || !contrasenia) {
+  if (!nombre || !apellido || !telefono || !pais || !tipo || !email || !contrasenia) {
     throw { message: 'Campos obligatorios', code: 400 };
   }
 

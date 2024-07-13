@@ -74,7 +74,7 @@ const updateUserSecret2Fa = async (user: Usuario, secret: string) => {
     }
 }
 
-const createUser = async (nombre: string, apellido: string, telefono: string, pais: string, email: string, contrasenia: string )=> {
+const createUser = async (nombre: string, apellido: string, telefono: string, pais: string, tipo: string, email: string, contrasenia: string )=> {
     try {
 
       const existingUser = await userRepository.findOne({ where: { email } });
@@ -89,6 +89,7 @@ const createUser = async (nombre: string, apellido: string, telefono: string, pa
         apellido,
         telefono,
         pais,
+        tipo,
         email,
         contrasenia: hashedPassword,
       });
