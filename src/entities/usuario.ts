@@ -17,7 +17,16 @@ export default class Usuario {
     nombre: string;
 
     @Column()
+    apellido: string;
+
+    @Column()
     email: string;
+
+    @Column()
+    telefono: string;
+
+    @Column()
+    pais: string;
 
     @Column()
     contrasenia: string;

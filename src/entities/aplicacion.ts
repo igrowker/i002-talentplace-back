@@ -7,6 +7,7 @@ import { ulid } from "ulid";
 export default class Aplicacion {
 
     @PrimaryColumn()
+
     id: string;
 
     @Column({ name: "proyecto_id" })
