@@ -126,8 +126,6 @@ const createUser = async (userData: UserDto )=> {
         user: {
           id: user.id,
           nombre: user.nombre,
-          email: user.email,
-          tipo: user.tipo
         }
       });
     } catch (error) {
