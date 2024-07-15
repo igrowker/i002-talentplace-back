@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import appService from "../services/apps.service";
+import catchAsync from "../utils/catchAsync.util";
 
 const getAllApplicationsUserValidate = async (req: Request, res: Response) =>{
     const userId = req.params.userId;
     const applications = await appService.getApplicationsUser(userId);
 
-    return res.status(200).json(applications);
+    res.status(200).json(applications);
 }
 
 const postApplyToProject = async (req: Request, res: Response) =>{
@@ -16,6 +17,6 @@ const postApplyToProject = async (req: Request, res: Response) =>{
 }
 
 export default {
-    getAllApplicationsUserValidate,
-    postApplyToProject
+    getAllApplicationsUserValidate: catchAsync(getAllApplicationsUserValidate),
+    postApplyToProject: catchAsync(postApplyToProject)
 }
