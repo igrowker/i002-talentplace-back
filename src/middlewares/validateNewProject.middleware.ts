@@ -27,7 +27,7 @@ const validateNewProject = (req: Request, res: Response, next: NextFunction) => 
       throw { message: 'La modalidad del proyecto es obligatoria y debe ser texto.', code: 400 };
     }
 
-    if (!estado || typeof estado !== 'string') {
+    if (!estado || typeof estado !== 'boolean') {
       throw { message: 'El estado del proyecto es obligatorio y debe ser texto.', code: 400 };
     }
 
