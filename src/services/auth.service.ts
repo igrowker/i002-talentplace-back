@@ -128,8 +128,9 @@ const createUser = async (userData: UserDto )=> {
           apellido: user.apellido,
           nombre: user.nombre,
           telefono: user.telefono,
+          pais: user.pais,
           tipo: user.tipo,
-          email: user.tipo
+          email: user.email
         }
       });
     } catch (error) {
