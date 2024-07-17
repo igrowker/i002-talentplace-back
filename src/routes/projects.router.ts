@@ -24,7 +24,7 @@ projectRouter.get("/:id",
 projectRouter.post("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     validateNewProject,
     projectController.postNewProject
 );
@@ -32,7 +32,7 @@ projectRouter.post("/:id",
 projectRouter.put("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     validateProjectUpdate,
     projectController.editProjectById
 );
@@ -40,7 +40,7 @@ projectRouter.put("/:id",
 projectRouter.delete("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     projectController.deleteProjectById
 );
 
