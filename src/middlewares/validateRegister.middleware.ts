@@ -32,4 +32,3 @@ const validateRegisterData = (req: Request, res: Response, next: NextFunction) =
 };
 
 export default validateRegisterData;
-
