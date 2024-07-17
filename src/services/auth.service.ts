@@ -125,9 +125,12 @@ const createUser = async (userData: UserDto )=> {
         refreshToken: token,
         user: {
           id: user.id,
+          apellido: user.apellido,
           nombre: user.nombre,
-          email: user.email,
-          tipo: user.tipo
+          telefono: user.telefono,
+          pais: user.pais,
+          tipo: user.tipo,
+          email: user.email
         }
       });
     } catch (error) {

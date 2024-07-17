@@ -23,21 +23,24 @@ const postApplyUserToProject = async (userId: string, proyectoId: string)=>{
             where: {proyectoId: proyectoId}
         })
 
-        if(!verifyExistingProject){
-            throw new Error("No se encontro el proyecto en la base de datos");
-        }
+        if(!verifyExistingProject) throw ({
+            message: "No se encontro el proyecto en la base de datos",
+            code: 404
+        })
 
         const verifyExistingApplication = await applicationRepository.findOne({
             where: {proyectoId: proyectoId, juniorId: userId}
         })
 
-        if(verifyExistingApplication){
-            throw new Error("El junior ya ha aplicado a este proyecto");
-        }
+        if(verifyExistingApplication) throw({
+            message: "El junior ya ha aplicado a este proyecto",
+            code: 302
+        })
 
-        if(verifyExistingProject.estado){
-            throw new Error("Este proyecto ya ha sido aplicado");
-        }
+        if(verifyExistingProject.estado) throw ({
+            message: "Este proyecto ya ha sido aplicado",
+            code: 302
+        })
 
         verifyExistingProject.estado = true;
         await applicationRepository.save(verifyExistingProject);
