@@ -47,6 +47,16 @@ const findHabilityByName = async (name: string) => {
     }
 }
 
+const getAllHabilities = async () => {
+    try {
+        const habilities: Habilidad[] = await habilityRepository.find();
+        return habilities;        
+    } catch (error) {
+        throw error;
+    }
+}
+
 export default {
-    postNewHability
+    postNewHability,
+    getAllHabilities,
 }

@@ -1,5 +1,6 @@
 import { AppDataSource } from "../config/typeorm.config"
 import Usuario from "../entities/usuario"
+import habilityService from "./hability.service";
 
 const userRepository = AppDataSource.getRepository(Usuario);
 
@@ -48,8 +49,19 @@ const getAllUsersService = async () => {
     return users;
 }
 
+const getAllUsersHabilitiesService = async () => {
+    try {
+        const habilities = await habilityService.getAllHabilities();
+        return habilities;
+        
+    } catch (error) {
+        throw error;
+    }
+}
+
 export default {
     getUserProfileByIdService,
     getAllUsersService,
-    editUserProfileService
+    editUserProfileService,
+    getAllUsersHabilitiesService,
 }

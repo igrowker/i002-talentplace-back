@@ -19,8 +19,14 @@ const getAllUsers = async (req: Request, res: Response) => {
     res.status(200).json(users);
 }
 
+const getAllUserHabilities = async (req: Request, res: Response) => {
+    const habilities = await userService.getAllUsersHabilitiesService();
+    res.status(200).json(habilities);
+}
+
 export default {
     getUserProfile: catchAsync(getUserProfile),
     editUserData: catchAsync(editUserData),
-    getAllUsers: catchAsync(getAllUsers)
+    getAllUsers: catchAsync(getAllUsers),
+    getAllUserHabilities: catchAsync(getAllUserHabilities),
 }
