@@ -1,6 +1,6 @@
 # Etapa 1: Instalación de dependencias
 FROM node:alpine AS deps
-#RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --frozen-lockfile
