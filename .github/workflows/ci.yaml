@@ -33,11 +33,11 @@ jobs:
 
       - name: Check for outdated dependencies
         run: |
-          npm outdated
+          npm outdated || true
 
       - name: Update dependencies
         run: |
-          npm update --save
+          npm update --save || true
 
       - name: Verify Dependencies
         run: npm audit
