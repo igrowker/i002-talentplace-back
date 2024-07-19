@@ -26,7 +26,15 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install Dependencies
-        run: npm ci --verbose
+        run: npm ci --verbose --frozen-lockfile
+
+      - name: Check for outdated dependencies
+        run: |
+          npm outdated
+
+      - name: Update dependencies
+        run: |
+          npm update --save
 
       - name: Verify Dependencies
         run: npm audit
