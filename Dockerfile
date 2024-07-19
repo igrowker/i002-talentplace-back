@@ -3,7 +3,14 @@ FROM node:alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --frozen-lockfile
+# Install dependencies
+RUN npm ci --silent --only=production
+
+# Check for outdated dependencies
+RUN npm outdated
+
+# Update dependencies
+RUN npm update
 
 # Etapa 2: Construcción de la aplicación
 FROM deps AS builder
