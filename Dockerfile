@@ -23,6 +23,6 @@ RUN npm run build
 FROM node:alpine AS runner
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
-RUN npm ci --prod --ignore-scripts
+RUN npm ci --omit=dev --ignore-scripts
 COPY --from=builder /app .
 CMD [ "npm", "start" ]
