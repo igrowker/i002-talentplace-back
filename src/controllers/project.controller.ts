@@ -35,10 +35,17 @@ const deleteProjectById = async (req: Request, res: Response) =>{
     res.status(200).json(projectDeleted);
 }
 
+const getAllProjectsByUserId = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const projects = await projectService.getAllProjectsByUserIdService(id);
+    res.status(200).json(projects);
+}
+
 export default {
     getAllProjects: catchAsync(getAllProjects),
     getProyectById: catchAsync(getProyectById),
     postNewProject: catchAsync(postNewProject),
     editProjectById: catchAsync(editProjectById),
-    deleteProjectById: catchAsync(deleteProjectById)
+    deleteProjectById: catchAsync(deleteProjectById),
+    getAllProjectsByUserId: catchAsync(getAllProjectsByUserId),
 }

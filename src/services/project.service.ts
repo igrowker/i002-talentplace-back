@@ -124,10 +124,22 @@ const findCompanyById = async (id: string) => {
     }
 }
 
+const getAllProjectsByUserIdService = async (id: string) => {
+    await findCompanyById(id);
+
+    try {
+        const projects = await projectRepository.findBy( {empresaId: id} );
+        return projects;        
+    } catch (error) {
+        throw error;
+    }    
+}
+
 export default {
     getAllProjectsService,
     getProjectByIdService,
     postNewProjectService,
     editProjectByIdService,
-    deleteProjectByIdService
+    deleteProjectByIdService,
+    getAllProjectsByUserIdService
 }
