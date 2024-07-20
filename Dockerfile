@@ -9,10 +9,11 @@ RUN npm install
 RUN npm ci --silent
 
 # Check for outdated dependencies
-RUN npm outdated
+# Use npm outdated with --exit 0 to avoid failure on non-zero exit code
+RUN npm outdated --exit 0 || true
 
 # Update dependencies
-RUN npm update
+RUN npm update --save || true
 
 # Etapa 2: Construcción de la aplicación
 FROM deps AS builder
