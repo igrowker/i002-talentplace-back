@@ -4,9 +4,8 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
 
-RUN npm install
 # Install dependencies
-RUN npm ci --silent
+RUN npm ci --verbose --frozen-lockfile
 
 # Check for outdated dependencies
 # Use npm outdated with --exit 0 to avoid failure on non-zero exit code
