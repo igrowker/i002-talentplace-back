@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Install dependencies
-RUN npm ci --verbose --frozen-lockfile
+RUN npm ci --frozen-lockfile
 
 # Check for outdated dependencies
 # Use npm outdated with --exit 0 to avoid failure on non-zero exit code
