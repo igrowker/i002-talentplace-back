@@ -41,6 +41,11 @@ const getAllProjectsByUserId = async (req: Request, res: Response) => {
     res.status(200).json(projects);
 }
 
+const getAllCategories = async (req: Request, res: Response) => {
+    const categories = await projectService.getAllCategoriesService();
+    res.status(200).json(categories);
+}
+
 export default {
     getAllProjects: catchAsync(getAllProjects),
     getProyectById: catchAsync(getProyectById),
@@ -48,4 +53,5 @@ export default {
     editProjectById: catchAsync(editProjectById),
     deleteProjectById: catchAsync(deleteProjectById),
     getAllProjectsByUserId: catchAsync(getAllProjectsByUserId),
+    getAllCategories: catchAsync(getAllCategories),
 }

@@ -40,6 +40,17 @@ const findCategoryByName = async (name: string) => {
     }
 }
 
+const getAllCategories = async () => {
+
+    try {
+        const categories = await categoryRepository.find();
+        return categories;
+    } catch (error) {
+        throw error;        
+    }
+}
+
 export default {
-    postNewCategory
+    postNewCategory,
+    getAllCategories
 }

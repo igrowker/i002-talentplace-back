@@ -135,11 +135,17 @@ const getAllProjectsByUserIdService = async (id: string) => {
     }    
 }
 
+const getAllCategoriesService = async () => {
+    const categories = await categoryService.getAllCategories();
+    return categories;
+}
+
 export default {
     getAllProjectsService,
     getProjectByIdService,
     postNewProjectService,
     editProjectByIdService,
     deleteProjectByIdService,
-    getAllProjectsByUserIdService
+    getAllProjectsByUserIdService,
+    getAllCategoriesService
 }
