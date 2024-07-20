@@ -13,6 +13,10 @@ projectRouter.get("/",
     projectController.getAllProjects
 );
 
+projectRouter.get("/categories",
+    projectController.getAllCategories,
+);
+
 projectRouter.get("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
