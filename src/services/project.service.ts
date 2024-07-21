@@ -41,7 +41,7 @@ const getProjectByIdService = async (projectId: string) =>{
 
 const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
     
-    await findCompanyById(id);
+    const company = await findCompanyById(id);
 
     try {
         //agrego categoria
@@ -54,6 +54,7 @@ const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
             descripcion: projectData.descripcion,
             requisitos: projectData.requisitos,
             empresaId: id,
+            empresaNombre: company.nombre,
             // presupuesto: 500,
             modalidad: projectData.modalidad,
             estado: projectData.estado,        

@@ -36,27 +36,38 @@ export const preloadUsersData = async () => {
 
     await AppDataSource.manager.transaction(async (transactionalEntityManager) => {
 
-        const projects = await ProjectRepository.find();
         //user con rol empresa
-        const userCompany = await UserRepository.findOneBy({email: "nicoausa@gmail.com"});        
-        
-        if (projects.length > 5)
-            return console.log(`No se hizo precarga de proyectos porque ya hay ${projects.length} proyectos cargados`);            
+        const userCompany = await UserRepository.findOneBy({email: "nicoausa@gmail.com"});               
         
         //proyectos
         for await(const project of preloadProjects) {
+
+            const existingProject = await ProjectRepository.findOne({
+                where: { titulo: project.titulo },
+                relations: ['categoria', 'habilidades']
+            });
 
             //agrego categoria
             const category: Categoria = await categoryService.postNewCategory(project.categoria);
             //agrego habilidades
             const habilities: Habilidad[] = await habilityService.postNewHability(project.habilidades);
-            const newProject = await ProjectRepository.create({
-                ...project,
-                empresaId: userCompany.id,
-                categoria: category,
-                habilidades: habilities
-            });
-            await transactionalEntityManager.save(newProject);
+            //update project
+            if (existingProject) {
+                existingProject.categoria = category;
+                existingProject.habilidades = habilities;
+                existingProject.empresaNombre = userCompany.nombre;
+    
+                await transactionalEntityManager.save(existingProject);
+            } else {
+                const newProject = ProjectRepository.create({
+                    ...project,
+                    empresaId: userCompany.id,
+                    empresaNombre: userCompany.nombre,
+                    categoria: category,
+                    habilidades: habilities
+                });
+                await transactionalEntityManager.save(newProject);
+            }
         }
 
         console.log("Precarga de Proyectos del Preload realizada con éxito");        

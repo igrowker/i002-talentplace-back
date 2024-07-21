@@ -27,6 +27,9 @@ export default class Proyecto {
     @Column({ name: "empresa_id" })
     empresaId: string;
 
+    @Column({name: "empresa_nombre", nullable: true})
+    empresaNombre: string;
+
     // @Column({ type: "decimal", precision: 10, scale: 2 })
     // presupuesto: number;
 
