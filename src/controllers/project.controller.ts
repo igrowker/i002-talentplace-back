@@ -30,8 +30,8 @@ const editProjectById = async (req: Request, res: Response) =>{
 }
 
 const deleteProjectById = async (req: Request, res: Response) =>{
-    const { projectId } = req.body;
-    const projectDeleted = await projectService.deleteProjectByIdService(projectId);
+    const { projectId } = req.query;    
+    const projectDeleted = await projectService.deleteProjectByIdService(projectId as string);
     res.status(200).json(projectDeleted);
 }
 
