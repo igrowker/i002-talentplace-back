@@ -23,7 +23,7 @@ usersRouter.get("/",
  *       200:
  *         description: Detalles del usuario obtenidos correctamente.
  */
-usersRouter.get("/me",
+usersRouter.get("/me/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
     jwtRolVerify(["admin", "junior"]),
