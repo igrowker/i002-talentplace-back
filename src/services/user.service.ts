@@ -21,7 +21,7 @@ const getUserProfileByIdService = async (userId: string) => {
     //destructurando
     const { id, nombre, email, tipo, autenticacion2FAHabilitada, updatedAt} = user;
 
-    return {id, nombre, email, tipo, autenticacion2FAHabilitada, updatedAt};
+    return user;
 }
 
 const editUserProfileService = async (id: string, userData: Partial<Usuario>) => {
