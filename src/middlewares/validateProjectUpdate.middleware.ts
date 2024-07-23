@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 const validateProjectUpdate = (req: Request, res: Response, next: NextFunction) => {
     const { projectId, categoria, habilidades } = req.body;
 
-    const specialCharRegex = /[@#$%^&*()":{}|<>]/;
+    const specialCharRegex = /[@#$%^&*()"{}|<>]/;
 
     if (!projectId || typeof projectId !== 'string' || specialCharRegex.test(projectId)) {
       throw { message: 'El id del proyecto es necesario y debe ser texto.', code: 400 };
