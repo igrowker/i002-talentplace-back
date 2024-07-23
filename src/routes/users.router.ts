@@ -12,6 +12,10 @@ usersRouter.get("/",
     userController.getAllUsers
 );
 
+usersRouter.get("/me/habilities",
+    userController.getAllUserHabilities
+);
+
 /**
  * @swagger
  * /api/v1/users/me:
@@ -23,10 +27,10 @@ usersRouter.get("/",
  *       200:
  *         description: Detalles del usuario obtenidos correctamente.
  */
-usersRouter.get("/me",
+usersRouter.get("/me/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(["admin", "junior"]),
+    jwtRolVerify(["admin", "junior", "empresa"]),
     userController.getUserProfile
 );
 
@@ -36,10 +40,5 @@ usersRouter.put("/me",
     jwtRolVerify(["admin", "junior"]),
     userController.editUserData
 );
-
-usersRouter.get("/me/habilities",
-    userController.getAllUserHabilities
-);
-
 
 export default usersRouter
