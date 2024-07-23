@@ -1,3 +1,4 @@
+import { Not } from "typeorm";
 import { AppDataSource } from "../config/typeorm.config"
 import Usuario from "../entities/usuario"
 import habilityService from "./hability.service";
@@ -24,19 +25,36 @@ const getUserProfileByIdService = async (userId: string) => {
 }
 
 const editUserProfileService = async (id: string, userData: Partial<Usuario>) => {
-  const userByQuery: Usuario = await userRepository.createQueryBuilder('usuarios')
-      .where({ id })
-      .getOne();
+    
+    const userByQuery: Usuario = await userRepository.createQueryBuilder('usuarios')
+        .where({ id })
+        .getOne();
 
-  if (!userByQuery) throw ({
-      message: "No existe un usuario con ese id",
-      code: 404
-  });
+    if (!userByQuery) throw ({
+        message: "No existe un usuario con ese id",
+        code: 404
+    });
 
-//   const existingUser = await userRepository.findOne({ where: { email: userData.email } });
-//   if (userByQuery !== existingUser) {
-//     throw { message: 'Ya existe un usuario con este correo electrónico', code: 409 };
-//   }
+    if (userData.email) {
+        //mediante querys
+        // const existingUserWithEmail: Usuario = await userRepository.createQueryBuilder('usuarios')
+        //   .where('usuarios.email = :email', { email: userData.email })
+        //   .andWhere('usuarios.id != :id', { id })
+        //   .getOne();
+
+        //mediante otro metodo
+        const existingUserWithEmail: Usuario = await userRepository.findOne({
+            where: {
+                email: userData.email,
+                id: Not(id)
+            }
+        });
+
+        if (existingUserWithEmail) throw ({
+            message: "El correo electrónico ya está en uso, ingrese otro",
+            code: 409
+        });
+    }
 
   // Actualiza las propiedades del objeto con los datos proporcionados en userData
   Object.assign(userByQuery, userData);
