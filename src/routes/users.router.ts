@@ -12,6 +12,10 @@ usersRouter.get("/",
     userController.getAllUsers
 );
 
+usersRouter.get("/me/habilities",
+    userController.getAllUserHabilities
+);
+
 /**
  * @swagger
  * /api/v1/users/me:
@@ -36,10 +40,5 @@ usersRouter.put("/me",
     jwtRolVerify(["admin", "junior"]),
     userController.editUserData
 );
-
-usersRouter.get("/me/habilities",
-    userController.getAllUserHabilities
-);
-
 
 export default usersRouter
