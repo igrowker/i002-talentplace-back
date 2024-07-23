@@ -3,7 +3,7 @@ import userService from "../services/user.service";
 import catchAsync from "../utils/catchAsync.util";
 
 const getUserProfile = async (req: Request, res: Response) =>{
-    const { id } = req.body;
+    const { id } = req.params;
     const userProfile = await userService.getUserProfileByIdService(id);
     res.status(200).json(userProfile)
 }
