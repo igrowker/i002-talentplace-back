@@ -11,6 +11,8 @@ const appsRouter: Router = Router();
  *     summary: Obtiene una lista de aplicaciones del usuario autenticado
  *     tags:
  *       - Aplicación
+ *     security:
+ *       - Bearer: []
  *     parameters:
  *       - in: path
  *         name: userId

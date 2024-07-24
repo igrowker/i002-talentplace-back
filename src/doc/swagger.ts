@@ -7,9 +7,17 @@ const options = {
         info: {
             title: 'Talent Place Igwroker',
             version: '1.0.0'
+        },
+        securityDefinitions: {  // Agrega esta sección
+            Bearer: {
+                type: 'apiKey',
+                name: 'Authorization',
+                in: 'header',
+                description: "Ingresa el token con el prefijo 'Bearer: ', por ejemplo: 'Bearer abcde12345'."
+            }
         }
     },
-    apis: ["src/routes/users.router.ts", "src/routes/auth.router.ts", "src/routes/projects.router.ts", "src/routes/apps.router.ts"]
+    apis: ["src/routes/users.router.ts", "src/routes/auth.router.ts", "src/routes/projects.router.ts", "src/routes/apps.router.ts"],
 }
 
 

@@ -11,7 +11,7 @@ const projectRouter: Router = Router();
 
 /**
  * @swagger
- * /api/v1/projects/:
+ * /projects/:
  *   get:
  *     summary: Obtiene los detalles de todos los proyectos.
  *     tags:
@@ -37,7 +37,7 @@ projectRouter.get("/", projectController.getAllProjects);
 
 /**
  * @swagger
- * /api/v1/projects/categories:
+ * /projects/categories:
  *   get:
  *     summary: Obtiene todas las categorias para un proyectos.
  *     tags:
@@ -59,11 +59,13 @@ projectRouter.get("/categories",
 
 /**
  * @swagger
- * /api/v1/projects/:{id}:
+ * /projects/:{id}:
  *   get:
  *     summary: Obtiene los detalles de un proyecto.
  *     tags:
  *       - Proyectos
+ *     security:
+ *       - Bearer: []
  *     responses:
  *       200:
  *         description: Detalles de un proyecto obtenidos correctamente.
@@ -95,6 +97,8 @@ projectRouter.get("/:id",
  *     summary: Crear nuevo proyecto.
  *     tags:
  *       - Proyectos
+ *     security:
+ *       - Bearer: []
  *     parameters:
  *       - in: body
  *         name: body
@@ -152,6 +156,8 @@ projectRouter.post("/:id",
  *     summary: Editar la categoría o las habilidades.
  *     tags:
  *       - Proyectos
+ *     security:
+ *       - Bearer: []
  *     parameters:
  *       - in: body
  *         name: body
@@ -185,6 +191,8 @@ projectRouter.put("/:id",
  *     summary: Elimina un proyecto.
  *     tags:
  *       - Proyectos
+ *     security:
+ *       - Bearer: []
  *     responses:
  *       200:
  *         description: Proyecto borrado correctamente.
@@ -205,6 +213,8 @@ projectRouter.delete("/:id",
  *     summary: Obtiene lps proyectos agregados por la empresa.
  *     tags:
  *       - Proyectos
+ *     security:
+ *       - Bearer: []
  *     responses:
  *       200:
  *         description: Una lista de proyectos agregados por la empresa obtenidos correctamente.

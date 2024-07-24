@@ -8,11 +8,13 @@ const usersRouter: Router = Router();
 
 /**
  * @swagger
- * /api/v1/users/:
+ * /users/:
  *   get:
  *     summary: Obtiene los detalles de todos los usuarios.
  *     tags:
  *       - Usuarios
+ *     security:
+ *       - Bearer: []
  *     responses:
  *       200:
  *         description: Detalles de los usuarios obtenidos correctamente.
@@ -36,7 +38,7 @@ usersRouter.get("/",
 
 /**
  * @swagger
- * /api/v1/users/me/habilities:
+ * /users/me/habilities:
  *   get:
  *     summary: Obtiene la lista de habilidades para agregar.
  *     tags:
@@ -58,11 +60,13 @@ usersRouter.get("/me/habilities",
 
 /**
  * @swagger
- * /api/v1/users/me:
+ * /users/me:
  *   get:
  *     summary: Obtiene los detalles del usuario actual.
  *     tags:
  *       - Usuarios
+ *     security:
+ *       - Bearer: []
  *     responses:
  *       200:
  *         description: Detalles del usuario obtenidos correctamente.
@@ -81,11 +85,13 @@ usersRouter.get("/me/:id",
 
 /**
  * @swagger
- * /api/v1/users/me/:{id}:
+ * /users/me/:{id}:
  *   put:
  *     summary: Edita los detalles del usuario actual.
  *     tags:
  *       - Usuarios
+ *     security:
+ *       - Bearer: []
  *     parameters:
  *       - in: body
  *         name: body
