@@ -6,11 +6,13 @@ const appsRouter: Router = Router();
 
 /**
  * @swagger
- * /applications/{userId}:
+ * /applications/:{userId}:
  *   get:
  *     summary: Obtiene una lista de aplicaciones del usuario autenticado
  *     tags:
  *       - Aplicación
+ *     security:
+ *       - Bearer: []
  *     parameters:
  *       - in: path
  *         name: userId
@@ -35,12 +37,16 @@ appsRouter.get("/", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicat
 
 /**
  * @swagger
- * /applications/{userId}:
+ * /applications/:{userId}:
  *   post:
  *     summary: Cargar la aplicación a un proyecto del usuario
  *     tags:
  *       - Aplicación
  *     parameters:
+ *       - in: path
+ *         name: userId
+ *         description: ID del usuario autenticado
+ *         required: true
  *       - in: body
  *         name: application
  *         description: Datos de la aplicación
@@ -66,6 +72,7 @@ appsRouter.get("/", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicat
  *       404:
  *         description: No se encontraron aplicaciones para el usuario o el proyecto no existe.
  */
-appsRouter.post("/", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
+//appsRouter.post("/", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
+appsRouter.post("/", appsController.postApplyToProject)
 
 export default appsRouter
