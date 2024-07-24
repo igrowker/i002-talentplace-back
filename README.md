@@ -54,7 +54,7 @@ JWT_SECRET=
    npm start
    ```
 
-## Estructura del Proyecto 🛠️
+## Estructura del Proyecto 📁
 
 El proyecto sigue una estructura de carpetas organizada para mantener el código modular y fácil de gestionar.
 
@@ -89,11 +89,11 @@ i002-talentplace-back/
 └── tsconfig.json       # Configuración de TypeScript
 ```
 
-## Documentación y Pruebas de la API con Swagger
+## Documentación y Pruebas de la API con Swagger 📚
 
 Para facilitar la documentación y las pruebas de la API, hemos integrado Swagger en nuestro proyecto. Swagger proporciona una interfaz de usuario interactiva que permite a los desarrolladores explorar y probar los diferentes endpoints de la API de manera sencilla.
 
-### Rutas Disponibles para Swagger 🔌
+### Rutas Disponibles para Swagger
 
 1. **Interfaz Interactiva de Swagger**
    - **URL**: [http://localhost:3000/api/v1/docs](http://localhost:3000/api/v1/docs)
