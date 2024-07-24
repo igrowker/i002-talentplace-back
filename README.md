@@ -35,13 +35,13 @@ Asegúrate de tener instalados los siguientes programas:
 3. **Configura las variables de entorno**
 Crea un archivo .env en la raíz del proyecto y añade las siguientes variables:
 
-   ```sh
-PORT=3000
-DB_HOST=localhost
-DB_USERNAME=
-DB_PASSWORD=
-DB_NAME_DATABASE=
-JWT_SECRET=
+    ```plaintext
+    PORT=3000
+    DB_HOST=localhost
+    DB_USERNAME=
+    DB_PASSWORD=
+    DB_NAME_DATABASE=
+    JWT_SECRET=
    ```
 
 4. **Compila el proyecto**
