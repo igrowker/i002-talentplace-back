@@ -12,7 +12,7 @@ const appsRouter: Router = Router();
  *     tags:
  *       - Aplicación
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: userId

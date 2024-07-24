@@ -14,7 +14,7 @@ const usersRouter: Router = Router();
  *     tags:
  *       - Usuarios
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Detalles de los usuarios obtenidos correctamente.
@@ -31,8 +31,8 @@ const usersRouter: Router = Router();
  *             autenticacion2FAHabilitada: boolean
  */
 usersRouter.get("/",
-    // jwtVerifyMiddleware.jwtVerify,
-    // jwtRolVerify(["admin"]),
+    jwtVerifyMiddleware.jwtVerify,
+    jwtRolVerify(["admin"]),
     userController.getAllUsers
 );
 
@@ -73,7 +73,7 @@ usersRouter.get("/me/habilities",
  *         schema:
  *           type: string
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Detalles del usuario obtenidos correctamente.
@@ -100,7 +100,7 @@ usersRouter.get("/me/:id",
  *     tags:
  *       - Usuarios
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -112,13 +112,15 @@ usersRouter.get("/me/:id",
  *         name: body
  *         description: Datos a editar del usuario actual
  *         required: true
- *         schema:
- *           type: object
- *           properties:
- *             name:
- *               type: string
- *             email:
- *               type: string
+ *         content:
+ *          application/json:
+ *           schema:
+ *              type: object
+ *              properties:
+ *                  name:
+ *                      type: string
+ *                  email:
+ *                      type: string
  *     responses:
  *       200:
  *         description: Edición de los detalles del usuario elaborados correctamente.
