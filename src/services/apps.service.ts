@@ -1,13 +1,25 @@
 import { AppDataSource } from "../config/typeorm.config"
 import Aplicacion from "../entities/aplicacion"
+import Usuario from "../entities/usuario";
 
 const applicationRepository = AppDataSource.getRepository(Aplicacion);
+const userRepository = AppDataSource.getRepository(Usuario);
+
 
 const getApplicationsUser= async (userId: string)=>{
     try{
+        const user: Usuario = await userRepository.findOneBy({id: userId});
+    
+        if (!user) throw ({
+            message: "No existe un usuario con ese id",
+            code: 404
+        });
+
         const applications = await applicationRepository.find({
             where: {juniorId: userId}
         });
+
+        if (applications.length === 0) return {message: "No tienes ninguna aplicacion"}
 
         return applications;
     }
