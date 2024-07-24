@@ -24,16 +24,22 @@ const authRouter: Router = Router();
  *           properties:
  *             nombre:
  *               type: string
+ *               example: "Juanito"
  *             apellido:
  *               type: string
+ *               example: "Pruebas"
  *             numero:
  *               type: string
+ *               example: "080808080808"
  *             email:
  *               type: string
+ *               example: "prueba123@gmail.com"
  *             contrasenia:
  *               type: string
+ *               example: "User123."
  *             tipo:
  *               type: string
+ *               example: junior
  *     responses:
  *       200:
  *         description: Estado de registro de usuario
@@ -63,8 +69,10 @@ authRouter.post("/register", validateRegisterData, authController.postUser);
  *           properties:
  *             email:
  *               type: string
+ *               example: "leoausa@gmail.com"
  *             contrasenia:
  *               type: string
+ *               example: "User123."
  *     responses:
  *       200:
  *         description: Estado de inicio de sesión del usuario

@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -26,7 +26,15 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install Dependencies
-        run: npm ci --verbose
+        run: npm ci --verbose --frozen-lockfile
+
+      - name: Check for outdated dependencies
+        run: |
+          npm outdated || true
+
+      - name: Update dependencies
+        run: |
+          npm update --save || true
 
       - name: Verify Dependencies
         run: npm audit
@@ -47,8 +55,9 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/talentplace:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
                 #${{ secrets.DOCKERHUB_USERNAME }}/talentplace:${{ github.run_number }}
+                #${{ secrets.DOCKERHUB_USERNAME }}/talentplace:${{ github.sha }}
   
   #verify-connectivity:
     #needs: build-and-test

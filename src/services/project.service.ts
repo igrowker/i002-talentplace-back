@@ -41,7 +41,7 @@ const getProjectByIdService = async (projectId: string) =>{
 
 const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
     
-    await findCompanyById(id);
+    const company = await findCompanyById(id);
 
     try {
         //agrego categoria
@@ -54,6 +54,7 @@ const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
             descripcion: projectData.descripcion,
             requisitos: projectData.requisitos,
             empresaId: id,
+            empresaNombre: company.nombre,
             // presupuesto: 500,
             modalidad: projectData.modalidad,
             estado: projectData.estado,        
@@ -124,10 +125,28 @@ const findCompanyById = async (id: string) => {
     }
 }
 
+const getAllProjectsByUserIdService = async (id: string) => {
+    await findCompanyById(id);
+
+    try {
+        const projects = await projectRepository.findBy( {empresaId: id} );
+        return projects;        
+    } catch (error) {
+        throw error;
+    }    
+}
+
+const getAllCategoriesService = async () => {
+    const categories = await categoryService.getAllCategories();
+    return categories;
+}
+
 export default {
     getAllProjectsService,
     getProjectByIdService,
     postNewProjectService,
     editProjectByIdService,
-    deleteProjectByIdService
+    deleteProjectByIdService,
+    getAllProjectsByUserIdService,
+    getAllCategoriesService
 }

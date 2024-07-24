@@ -36,6 +36,28 @@ usersRouter.get("/",
 
 /**
  * @swagger
+ * /api/v1/users/me/habilities:
+ *   get:
+ *     summary: Obtiene la lista de habilidades para agregar.
+ *     tags:
+ *       - Usuarios
+ *     responses:
+ *       200:
+ *         description: La lista de habilidades obtenidas correctamente.
+ *         example:
+ *           - id: string
+ *             name: string
+ *           - id: string
+ *             name: string
+ *           - id: string
+ *             name: string
+ */
+usersRouter.get("/me/habilities",
+    userController.getAllUserHabilities
+);
+
+/**
+ * @swagger
  * /api/v1/users/me:
  *   get:
  *     summary: Obtiene los detalles del usuario actual.
@@ -50,16 +72,16 @@ usersRouter.get("/",
  *           email: string
  *           tipo: junior/empresa
  */
-usersRouter.get("/me",
+usersRouter.get("/me/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(["admin", "junior"]),
+    jwtRolVerify(["admin", "junior", "empresa"]),
     userController.getUserProfile
 );
 
 /**
  * @swagger
- * /api/v1/users/me:
+ * /api/v1/users/me/:{id}:
  *   put:
  *     summary: Edita los detalles del usuario actual.
  *     tags:
@@ -84,10 +106,10 @@ usersRouter.get("/me",
  *           email: string
  *           tipo: junior/empresa
  */
-usersRouter.put("/me",
+usersRouter.put("/me/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(["admin", "junior"]),
+    jwtRolVerify(["admin", "junior", "empresa"]),
     userController.editUserData
 );
 

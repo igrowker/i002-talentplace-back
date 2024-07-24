@@ -27,6 +27,9 @@ export default class Proyecto {
     @Column({ name: "empresa_id" })
     empresaId: string;
 
+    @Column({name: "empresa_nombre", nullable: true})
+    empresaNombre: string;
+
     // @Column({ type: "decimal", precision: 10, scale: 2 })
     // presupuesto: number;
 
@@ -43,7 +46,7 @@ export default class Proyecto {
     estado: boolean;
     
     @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-    fechaCreacion: Date
+    fechaCreacion: Date;
 
     @ManyToMany(() => Habilidad, (habilidad) => habilidad.proyecto, { eager: true })
     habilidades: Habilidad[];

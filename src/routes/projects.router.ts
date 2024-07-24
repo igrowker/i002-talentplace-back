@@ -37,7 +37,29 @@ projectRouter.get("/", projectController.getAllProjects);
 
 /**
  * @swagger
- * /api/v1/projects/{id}:
+ * /api/v1/projects/categories:
+ *   get:
+ *     summary: Obtiene todas las categorias para un proyectos.
+ *     tags:
+ *       - Proyectos
+ *     responses:
+ *       200:
+ *         description: Las categorias para los proyectos obtenidas correctamente.
+ *         example:
+ *           - id: string
+ *             name: string
+ *           - id: string
+ *             name: string
+ *           - id: string
+ *             name: string
+ */
+projectRouter.get("/categories",
+    projectController.getAllCategories,
+);
+
+/**
+ * @swagger
+ * /api/v1/projects/:{id}:
  *   get:
  *     summary: Obtiene los detalles de un proyecto.
  *     tags:
@@ -68,7 +90,7 @@ projectRouter.get("/:id",
 
 /**
  * @swagger
- * /api/v1/projects/{id}:
+ * /projects/:{id}:
  *   post:
  *     summary: Crear nuevo proyecto.
  *     tags:
@@ -83,16 +105,21 @@ projectRouter.get("/:id",
  *           properties:
  *             titulo:
  *               type: string
+ *               example: "Titulo de prueba"
  *             descripcion:
  *               type: string
+ *               example: "Esta descripción es de prueba"
  *             requisitos:
  *               type: string
+ *               example: "HTML, CSS, JS, REACT, SQL"
  *             empresaId:
  *               type: string
  *             modalidad:
  *               type: string
+ *               example: "Hibrido"
  *             estado:
  *               type: string
+ *               example: "Activa"
  *             habilidades:
  *               type: string
  *             categoria:
@@ -113,14 +140,14 @@ projectRouter.get("/:id",
 projectRouter.post("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     validateNewProject,
     projectController.postNewProject
 );
 
 /**
  * @swagger
- * /api/v1/projects/:id:
+ * /projects/:{id}:
  *   put:
  *     summary: Editar la categoría o las habilidades.
  *     tags:
@@ -146,14 +173,14 @@ projectRouter.post("/:id",
 projectRouter.put("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     validateProjectUpdate,
     projectController.editProjectById
 );
 
 /**
  * @swagger
- * /api/v1/projects/:id:
+ * /projects/:{id}:
  *   delete:
  *     summary: Elimina un proyecto.
  *     tags:
@@ -167,8 +194,47 @@ projectRouter.put("/:id",
 projectRouter.delete("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     projectController.deleteProjectById
+);
+
+/**
+ * @swagger
+ * /projects/user/:{id}:
+ *   get:
+ *     summary: Obtiene lps proyectos agregados por la empresa.
+ *     tags:
+ *       - Proyectos
+ *     responses:
+ *       200:
+ *         description: Una lista de proyectos agregados por la empresa obtenidos correctamente.
+ *         example:
+ *           - id: string
+ *             titulo: string
+ *             descripcion: string
+ *             requisitos: string
+ *             modalidad: string
+ *             estado: boolean
+ *             empresa: string
+ *             aplicacion: string
+ *             pago: string
+ *             comentario: string
+ *           - id: string
+ *             titulo: string
+ *             descripcion: string
+ *             requisitos: string
+ *             modalidad: string
+ *             estado: boolean
+ *             empresa: string
+ *             aplicacion: string
+ *             pago: string
+ *             comentario: string
+ */
+projectRouter.get("/user/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(['empresa', 'admin']),
+    projectController.getAllProjectsByUserId
 );
 
 export default projectRouter

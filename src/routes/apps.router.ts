@@ -6,7 +6,7 @@ const appsRouter: Router = Router();
 
 /**
  * @swagger
- * /applications/{userId}:
+ * /applications/:{userId}:
  *   get:
  *     summary: Obtiene una lista de aplicaciones del usuario autenticado
  *     tags:
@@ -35,7 +35,7 @@ appsRouter.get("/", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicat
 
 /**
  * @swagger
- * /applications/{userId}:
+ * /applications/:{userId}:
  *   post:
  *     summary: Cargar la aplicación a un proyecto del usuario
  *     tags:

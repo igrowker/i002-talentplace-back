@@ -10,8 +10,8 @@ const getAllProjects = async (req: Request, res: Response) =>{
 }
 
 const getProyectById = async (req: Request, res: Response) =>{  
-    const { projectId } = req.body;
-    const project = await projectService.getProjectByIdService(projectId)
+    const { projectId } = req.query;
+    const project = await projectService.getProjectByIdService(projectId as string)
     res.status(200).json(project);
 }
 
@@ -30,9 +30,20 @@ const editProjectById = async (req: Request, res: Response) =>{
 }
 
 const deleteProjectById = async (req: Request, res: Response) =>{
-    const { projectId } = req.body;
-    const projectDeleted = await projectService.deleteProjectByIdService(projectId);
+    const { projectId } = req.query;    
+    const projectDeleted = await projectService.deleteProjectByIdService(projectId as string);
     res.status(200).json(projectDeleted);
+}
+
+const getAllProjectsByUserId = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const projects = await projectService.getAllProjectsByUserIdService(id);
+    res.status(200).json(projects);
+}
+
+const getAllCategories = async (req: Request, res: Response) => {
+    const categories = await projectService.getAllCategoriesService();
+    res.status(200).json(categories);
 }
 
 export default {
@@ -40,5 +51,7 @@ export default {
     getProyectById: catchAsync(getProyectById),
     postNewProject: catchAsync(postNewProject),
     editProjectById: catchAsync(editProjectById),
-    deleteProjectById: catchAsync(deleteProjectById)
+    deleteProjectById: catchAsync(deleteProjectById),
+    getAllProjectsByUserId: catchAsync(getAllProjectsByUserId),
+    getAllCategories: catchAsync(getAllCategories),
 }
