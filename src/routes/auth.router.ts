@@ -59,11 +59,11 @@ authRouter.post("/register", validateRegisterData, authController.postUser);
  *     summary: Logueo de usuario
  *     tags:
  *       - Autenticación
- *     parameters:
- *       - in: body
- *         name: body
- *         description: Datos para iniciar sesión
- *         required: true
+ *     requestBody:
+ *       description: Datos para iniciar sesión
+ *       required: true
+ *       content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:

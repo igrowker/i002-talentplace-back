@@ -31,8 +31,8 @@ const usersRouter: Router = Router();
  *             autenticacion2FAHabilitada: boolean
  */
 usersRouter.get("/",
-    // jwtVerifyMiddleware.jwtVerify,
-    // jwtRolVerify(["admin"]),
+    jwtVerifyMiddleware.jwtVerify,
+    jwtRolVerify(["admin"]),
     userController.getAllUsers
 );
 
@@ -73,7 +73,7 @@ usersRouter.get("/me/habilities",
  *         schema:
  *           type: string
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Detalles del usuario obtenidos correctamente.
