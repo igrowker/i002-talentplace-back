@@ -1,16 +1,35 @@
-# Talent Place Backend API🚀
+<div style="text-align: center;">
+  <img src="https://talent-place.netlify.app/assets/2-CfquaIKd.png" alt="Descripción de la imagen" width="250"/>
+</div>
+
+<div style="text-align: center;">
+  <h1>Talent Place Backend API🚀</h1>
+</div>
+
 
 ## Descripción 📄
 
-Breve descripción de tu proyecto y sus funcionalidades principales.
+Talent Place es una plataforma web innovadora que conecta desarrolladores junior con proyectos freelance en el sector IT. Nuestra misión es facilitar la colaboración entre empresas y jóvenes talentos, ofreciendo un entorno seguro y eficiente para la gestión de proyectos.
+
+### Problema que se Intenta Resolver
+
+1. **Para las Empresas**: Identificar y contratar desarrolladores junior con las habilidades adecuadas es una tarea ardua. La falta de visibilidad y la dificultad para evaluar competencias específicas hacen que el proceso de selección sea ineficiente y costoso.
+2. **Para los Desarrolladores Junior**: Encontrar oportunidades laborales que permitan crecer profesionalmente y adquirir experiencia real es complicado. Muchos enfrentan barreras de entrada altas y una competencia intensa.
+
+### Solución Propuesta
+
+- **Conecta Empresas y Talentos**: Facilita la búsqueda y selección de desarrolladores junior cualificados mediante un sistema intuitivo y transparente.
+- **Gestión Eficiente de Proyectos**: Proporciona herramientas robustas para la gestión de proyectos.
+- **Crecimiento Profesional**: Ofrece a los desarrolladores junior la oportunidad de trabajar en proyectos reales, permitiéndoles ganar experiencia práctica y construir un portafolio sólido.
+
+Nuestra API backend es el motor que impulsa esta plataforma, proporcionando servicios esenciales como autenticación de usuarios, gestión de perfiles, asignación de proyectos.
 
 ## Tecnologías Utilizadas 🛠️
 
-- TypeScript
-- Node.js
-- TypeORM
-- PostgreSQL
-- Express.js
+- **TypeScript** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="20" height="20">
+- **Node.js** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="20" height="20">
+- **PostgreSQL** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="20" height="20">
+- **Express.js** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" width="20" height="20">
 
 ## Instalación 💻
 
