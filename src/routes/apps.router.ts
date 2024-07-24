@@ -43,6 +43,10 @@ appsRouter.get("/", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicat
  *     tags:
  *       - Aplicación
  *     parameters:
+ *       - in: path
+ *         name: userId
+ *         description: ID del usuario autenticado
+ *         required: true
  *       - in: body
  *         name: application
  *         description: Datos de la aplicación

@@ -60,21 +60,30 @@ usersRouter.get("/me/habilities",
 
 /**
  * @swagger
- * /users/me:
+ * /users/me/{id}:
  *   get:
  *     summary: Obtiene los detalles del usuario actual.
  *     tags:
  *       - Usuarios
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID del usuario
+ *         schema:
+ *           type: string
  *     security:
  *       - Bearer: []
  *     responses:
  *       200:
  *         description: Detalles del usuario obtenidos correctamente.
- *         example:
- *           id: string
- *           nombre: string
- *           email: string
- *           tipo: junior/empresa
+ *         content:
+ *           application/json:
+ *             example:
+ *               id: string
+ *               nombre: string
+ *               email: string
+ *               tipo: junior/empresa
  */
 usersRouter.get("/me/:id",
     jwtVerifyMiddleware.jwtVerify,
@@ -93,6 +102,12 @@ usersRouter.get("/me/:id",
  *     security:
  *       - Bearer: []
  *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del proyecto
+ *         schema:
+ *           type: string
  *       - in: body
  *         name: body
  *         description: Datos a editar del usuario actual

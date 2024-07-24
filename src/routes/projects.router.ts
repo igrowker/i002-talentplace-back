@@ -66,6 +66,13 @@ projectRouter.get("/categories",
  *       - Proyectos
  *     security:
  *       - Bearer: []
+  *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID del usuario
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Detalles de un proyecto obtenidos correctamente.
@@ -100,6 +107,12 @@ projectRouter.get("/:id",
  *     security:
  *       - Bearer: []
  *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del proyecto
+ *         schema:
+ *           type: string
  *       - in: body
  *         name: body
  *         description: Edición de las habilidades solicitadas o la categoría del proyecto.
@@ -159,6 +172,12 @@ projectRouter.post("/:id",
  *     security:
  *       - Bearer: []
  *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del proyecto
+ *         schema:
+ *           type: string
  *       - in: body
  *         name: body
  *         description: Edición de las habilidades solicitadas o la categoría del proyecto.
@@ -193,6 +212,13 @@ projectRouter.put("/:id",
  *       - Proyectos
  *     security:
  *       - Bearer: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID del usuario
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Proyecto borrado correctamente.
@@ -215,6 +241,13 @@ projectRouter.delete("/:id",
  *       - Proyectos
  *     security:
  *       - Bearer: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID del usuario
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Una lista de proyectos agregados por la empresa obtenidos correctamente.
