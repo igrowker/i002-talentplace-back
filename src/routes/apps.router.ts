@@ -66,6 +66,7 @@ appsRouter.get("/", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicat
  *       404:
  *         description: No se encontraron aplicaciones para el usuario o el proyecto no existe.
  */
-appsRouter.post("/", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
+//appsRouter.post("/", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
+appsRouter.post("/", appsController.postApplyToProject)
 
 export default appsRouter
