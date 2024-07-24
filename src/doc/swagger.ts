@@ -8,7 +8,7 @@ const options = {
             title: 'Talent Place Igwroker',
             version: '1.0.0'
         },
-        securityDefinitions: {  // Agrega esta sección
+        securityDefinitions: {
             Bearer: {
                 type: 'apiKey',
                 name: 'Authorization',
