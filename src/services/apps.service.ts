@@ -1,10 +1,10 @@
 import { AppDataSource } from "../config/typeorm.config"
 import Aplicacion from "../entities/aplicacion"
 import Usuario from "../entities/usuario";
+import projectService from "./project.service";
 
 const applicationRepository = AppDataSource.getRepository(Aplicacion);
 const userRepository = AppDataSource.getRepository(Usuario);
-
 
 const getApplicationsUser= async (userId: string)=>{
     try{
@@ -30,40 +30,34 @@ const getApplicationsUser= async (userId: string)=>{
 
 const postApplyUserToProject = async (userId: string, proyectoId: string)=>{
 
-    try{
-        const verifyExistingProject = await applicationRepository.findOne({
-            where: {proyectoId: proyectoId}
-        })
+    if(!userId || !proyectoId) throw ({
+        message: "Es requisito el userId y el proyectoId",
+        code: 400
+    });
 
-        if(!verifyExistingProject) throw ({
-            message: "No se encontro el proyecto en la base de datos",
-            code: 404
-        })
+    try{
+        await projectService.getProjectByIdService(proyectoId);
 
         const verifyExistingApplication = await applicationRepository.findOne({
-            where: {proyectoId: proyectoId, juniorId: userId}
-        })
+            where: {
+                proyectoId,
+                juniorId: userId
+            }
+        });
 
         if(verifyExistingApplication) throw({
-            message: "El junior ya ha aplicado a este proyecto",
+            message: "Ya aplicaste a este proyecto",
             code: 302
-        })
-
-        if(verifyExistingProject.estado) throw ({
-            message: "Este proyecto ya ha sido aplicado",
-            code: 302
-        })
-
-        verifyExistingProject.estado = true;
-        await applicationRepository.save(verifyExistingProject);
-
+        });
+            
         const newApplication = new Aplicacion();
-            newApplication.proyectoId = proyectoId;
-            newApplication.juniorId = userId;
-            newApplication.estado = true;
-
+        newApplication.proyectoId = proyectoId;
+        newApplication.juniorId = userId;
+        newApplication.estado = true;    
+        
         await applicationRepository.save(newApplication);
-        return console.log("Aplicacion realizada con exito")
+
+        return {message: "Aplicacion realizada, ¡mucha suerte!"}
     }
 
     catch (error) {

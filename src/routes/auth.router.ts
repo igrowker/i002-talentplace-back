@@ -14,11 +14,11 @@ const authRouter: Router = Router();
  *     summary: Registro de usuario
  *     tags:
  *       - Autenticación
- *     parameters:
- *       - in: body
- *         name: body
- *         description: Datos para registro
- *         required: true
+ *     requestBody:
+ *       description: Datos para registro
+ *       required: true
+ *       content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
@@ -101,11 +101,11 @@ authRouter.post("/login", validateLoginData, authController.authLogin);
  *     summary: Configuración de autenticación de dos factores (2FA)
  *     tags:
  *       - Autenticación
- *     parameters:
- *       - in: body
- *         name: body
- *         description: Datos para configurar 2FA
- *         required: true
+ *     requestBody:
+ *       description: Datos para configurar 2FA
+ *       required: true
+ *       content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
@@ -130,11 +130,11 @@ authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , authController.pos
  *     summary: Verificación de autenticación de dos factores (2FA)
  *     tags:
  *       - Autenticación
- *     parameters:
- *       - in: body
- *         name: body
- *         description: Datos para verificar 2FA
- *         required: true
+ *     requestBody:
+ *       description: Datos para verificar 2FA
+ *       required: true
+ *       content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
