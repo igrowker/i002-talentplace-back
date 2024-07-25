@@ -6,7 +6,6 @@
   <h1>Talent Place Backend API🚀</h1>
 </div>
 
-
 ## Descripción 📄
 
 Talent Place es una plataforma web innovadora que conecta desarrolladores junior con proyectos freelance en el sector IT. Nuestra misión es facilitar la colaboración entre empresas y jóvenes talentos, ofreciendo un entorno seguro y eficiente para la gestión de proyectos.
@@ -30,6 +29,8 @@ Nuestra API backend es el motor que impulsa esta plataforma, proporcionando serv
 - **Node.js** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="20" height="20">
 - **PostgreSQL** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="20" height="20">
 - **Express.js** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" width="20" height="20">
+- **Docker** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" width="20" height="20">
+- **GitHub** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20">
 
 ## Instalación 💻
 
@@ -123,3 +124,11 @@ Para facilitar la documentación y las pruebas de la API, hemos integrado Swagge
 2. **Especificación JSON de Swagger**:
    - **URL**: [http://localhost:3000/api/v1/docs.json](http://localhost:3000/api/v1/docs.json)
    - **Descripción**: Esta ruta proporciona la especificación completa de la API en formato JSON. Es útil para integraciones automáticas y para generar clientes de API en diferentes lenguajes de programación.
+
+## Despliegues y Repositorios 🚀
+
+### Backend
+
+- **Despliegue**: [https://i002-talentplace-back.onrender.com/](https://i002-talentplace-back.onrender.com/)
+- **Repositorio**: [https://github.com/igrowker/i002-talentplace-back](https://github.com/igrowker/i002-talentplace-back)
+- **Endpoints**: [Swagger](https://i002-donatello-back-java-latest-z9hn.onrender.com/api/docs)
