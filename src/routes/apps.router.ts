@@ -1,6 +1,8 @@
 import { Router } from "express";
 import appsController from "../controllers/apps.controller";
 import jwtVerifyMiddleware from "../middlewares/jwtVerify.middleware";
+import jwtIdMatchVerifyMiddleware from "../middlewares/jwtIdMatchVerify.middleware";
+import jwtRolVerify from "../middlewares/jwtRolVerify.middleware";
 
 const appsRouter: Router = Router();
 
@@ -32,7 +34,12 @@ const appsRouter: Router = Router();
  *       404:
  *         description: No se encontraron aplicaciones para el usuario.
  */
-appsRouter.get("/:id", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicationsUserValidate)
+appsRouter.get("/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(["admin", "junior"]),
+    appsController.getAllApplicationsUserValidate
+)
 
 
 /**
@@ -73,6 +80,11 @@ appsRouter.get("/:id", jwtVerifyMiddleware.jwtVerify, appsController.getAllAppli
  *         description: No se encontraron aplicaciones para el usuario o el proyecto no existe.
  */
 //appsRouter.post("/", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
-appsRouter.post("/:id", appsController.postApplyToProject)
+appsRouter.post("/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(["admin", "junior"]),
+    appsController.postApplyToProject
+);
 
 export default appsRouter
