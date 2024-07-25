@@ -23,14 +23,14 @@ Talent Place es una plataforma web innovadora que conecta desarrolladores junior
 
 Nuestra API backend es el motor que impulsa esta plataforma, proporcionando servicios esenciales como autenticación de usuarios, gestión de perfiles, asignación de proyectos.
 
-## Tecnologías Utilizadas 🛠️
+## Tecnologías y Herramientas Utilizadas 🛠️
 
 - **TypeScript** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="20" height="20">
 - **Node.js** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="20" height="20">
 - **PostgreSQL** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="20" height="20">
 - **Express.js** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" width="20" height="20">
 - **Docker** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" width="20" height="20">
-- **GitHub** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20">
+- **GitHub Actions** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20">
 
 ## Instalación 💻
 
