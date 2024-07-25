@@ -65,7 +65,7 @@ projectRouter.get("/categories",
  *     tags:
  *       - Proyectos
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
   *     parameters:
  *       - name: id
  *         in: path
@@ -105,7 +105,7 @@ projectRouter.get("/:id",
  *     tags:
  *       - Proyectos
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -170,7 +170,7 @@ projectRouter.post("/:id",
  *     tags:
  *       - Proyectos
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -211,7 +211,7 @@ projectRouter.put("/:id",
  *     tags:
  *       - Proyectos
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -240,7 +240,7 @@ projectRouter.delete("/:id",
  *     tags:
  *       - Proyectos
  *     security:
- *       - Bearer: []
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
