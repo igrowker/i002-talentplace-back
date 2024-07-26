@@ -54,14 +54,14 @@ const editUserProfileService = async (id: string, userData: Partial<Usuario>) =>
             message: "El correo electrónico ya está en uso, ingrese otro",
             code: 409
         });
-    }
+    };
 
-  // Actualiza las propiedades del objeto con los datos proporcionados en userData
-  Object.assign(userByQuery, userData);
-  await userRepository.save(userByQuery);
+    // Actualiza las propiedades del objeto con los datos proporcionados en userData
+    Object.assign(userByQuery, userData);
+    await userRepository.save(userByQuery);
 
-  const { nombre, apellido, email, tipo, telefono, pais, autenticacion2FAHabilitada, updatedAt } = userByQuery;
-  return { id , nombre, apellido, email, tipo, telefono, pais, autenticacion2FAHabilitada, updatedAt };
+    const { nombre, apellido, email, tipo, telefono, pais, autenticacion2FAHabilitada, updatedAt } = userByQuery;
+    return { id , nombre, apellido, email, tipo, telefono, pais, autenticacion2FAHabilitada, updatedAt };
 }
 
 const getAllUsersService = async () => {
