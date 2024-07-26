@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 const validateNewProject = (req: Request, res: Response, next: NextFunction) => {
     const { titulo, descripcion, requisitos, categoria, habilidades, modalidad, estado } = req.body;
 
-    const specialCharRegex = /[@#$%^&*()"{}|<>]/;
+    const specialCharRegex = /[@$%^&*"{}|<>]/;
 
     if (!titulo || typeof titulo !== 'string' || specialCharRegex.test(titulo)) {
         throw { message: 'El título del proyecto es obligatorio y debe ser texto', code: 400 };

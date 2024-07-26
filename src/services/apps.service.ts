@@ -19,7 +19,7 @@ const getApplicationsUser= async (userId: string)=>{
             where: {juniorId: userId}
         });
 
-        if (applications.length === 0) return {message: "No tienes ninguna aplicacion"}
+        if (applications.length === 0) return [];
 
         return applications;
     }
