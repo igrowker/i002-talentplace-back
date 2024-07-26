@@ -131,4 +131,14 @@ Para facilitar la documentación y las pruebas de la API, hemos integrado Swagge
 
 - **Despliegue**: [https://i002-talentplace-back.onrender.com/](https://i002-talentplace-back.onrender.com/)
 - **Repositorio**: [https://github.com/igrowker/i002-talentplace-back](https://github.com/igrowker/i002-talentplace-back)
-- **Endpoints**: [Swagger](https://i002-donatello-back-java-latest-z9hn.onrender.com/api/docs)
+- **Documentacion**: [Swagger](https://i002-donatello-back-java-latest-z9hn.onrender.com/api/docs)
+
+## Integrantes del proyecto
+<a href="https://github.com/octa-quintero" target="_blank">
+<img src="https://img.shields.io/badge/Octavio Quinteros-8c52ff?style=for-the-badge&logo=github&logoColor=black">
+</a>
+<a href="https://github.com/ParkerPiter" target="_blank">
+<img src="https://img.shields.io/badge/Gabriel Alejandro Leal-8c52ff?style=for-the-badge&logo=github&logoColor=black">
+</a>
+<a href="https://github.com/DEV-AusA" target="_blank">
+<img src="https://img.shields.io/badge/Cesar Ausa Vasquez-8c52ff?style=for-the-badge&logo=github&logoColor=black">
