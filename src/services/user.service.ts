@@ -1,4 +1,5 @@
 import { Not } from "typeorm";
+import bcrypt from "bcryptjs";
 import { AppDataSource } from "../config/typeorm.config"
 import Usuario from "../entities/usuario"
 import habilityService from "./hability.service";
@@ -20,11 +21,11 @@ const getUserProfileByIdService = async (userId: string) => {
     });
     
     //destructurando
-    // const { id, nombre, email, tipo, autenticacion2FAHabilitada, updatedAt} = user;
-    return user;
+    const { id, nombre, apellido, email, tipo, telefono, pais, autenticacion2FAHabilitada, updatedAt } = user;
+    return { id , nombre, apellido, email, tipo, telefono, pais, autenticacion2FAHabilitada, updatedAt };
 }
 
-const editUserProfileService = async (id: string, userData: Partial<Usuario>) => {
+const editUserProfileService = async (id: string, userData) => {
     
     const userByQuery: Usuario = await userRepository.createQueryBuilder('usuarios')
         .where({ id })
@@ -56,8 +57,23 @@ const editUserProfileService = async (id: string, userData: Partial<Usuario>) =>
         });
     };
 
-    // Actualiza las propiedades del objeto con los datos proporcionados en userData
-    Object.assign(userByQuery, userData);
+    if(!userData.contrasenia) {
+        Object.assign(userByQuery, userData);
+    }
+    else {
+        const passwordMatch = await bcrypt.compare(userData.contrasenia, userByQuery.contrasenia);
+        if (!passwordMatch) {
+          throw { message: 'La contraseña ingresada no es la correcta', code: 401 };
+        };
+    
+        // Actualiza las propiedades del objeto con los datos proporcionados en userData
+        const hashedPassword = await bcrypt.hash(userData.nuevaContrasenia, 5);
+        Object.assign(userByQuery, {
+            ...userData,
+            contrasenia: hashedPassword,
+        });
+    };
+    
     await userRepository.save(userByQuery);
 
     const { nombre, apellido, email, tipo, telefono, pais, autenticacion2FAHabilitada, updatedAt } = userByQuery;
